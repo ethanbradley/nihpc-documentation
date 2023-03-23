@@ -11,7 +11,6 @@ To gain an account to access Kelvin2, please fill the form found here :
 Please allow 48 hours for your account to be created.
 Users will be emailed confirmation when their account has been proccessed.
 <br />
-<br />
 
 ## Credentials
 ### Username
