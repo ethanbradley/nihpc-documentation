@@ -6,7 +6,6 @@ nav:
     - 'Modules & Jobscripts.md'
     - 'Job Submission.md'
 theme:
-  logo: assets/NI-HPC.PNG
   name: material
   features:
     - navigation.tabs
