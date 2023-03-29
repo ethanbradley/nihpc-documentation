@@ -16,7 +16,7 @@ The `module load` command will load the selected module, including its binaries/
 
 ### <ins>Module list<ins><br />
 
-The `module list` command will show the currently loaded modules loaded in the users environment.
+The `module list` command will show the currently loaded modules in the users environment.
 
 ![module list](assets/module_list.PNG)
 
@@ -79,7 +79,7 @@ Default resources when jobs resources are not requested are as follows :
  - 1GB of memory per core
  - Max runtime of 3hrs
 
- If users need more than the default they can request using the instructions below :
+ If you need more than the default they can request using the instructions below :
 
         
         #SBATCH --ntasks=<cores>   ## this requests the number of cpu cores needed for the job
