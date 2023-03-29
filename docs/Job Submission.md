@@ -50,7 +50,7 @@ To start an interactive job :
 
 
 ### Queue status
-Once you have submitted your jobs using `sbatch` or `srun` you can then view your queue status to see how your jobs are doing along with further information:
+Once you have submitted your jobs using `sbatch` or `srun`, you can then view your queue status to see how your jobs are doing along with further information:
 
     squeue -u <username>
 
@@ -74,4 +74,4 @@ If you need to delete a job from the current queue you can use the `scancel` com
 
     scancel 8
 
-Users can delete their own jobs only
+Users can delete their own jobs only.
