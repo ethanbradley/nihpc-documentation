@@ -17,8 +17,9 @@ There are 4 pools of storage on Kelvin2 :
 ### <ins>Home<ins>
         
     /users/"username"
- - Default place that users login to
-- 50GB/100K file quota
+ - Default place that users login to.
+- 50GB/100K file quota.
+- No automated file deletion - therefore good to store smaller/compressed longer term data.
 
 ### <ins>Scratch<ins>
         
@@ -26,6 +27,8 @@ There are 4 pools of storage on Kelvin2 :
  - Large, shared storage area
  - No Quota
  - Temporary data solution - once per month a purge will delete any data that hasnt been accessed in the previous 3 months.
+ - Mainly used for storing data that is neccassary to running jobs and storing their output.
+ - Once results are outputed, permanent data should be moved to longer term storage ( Home/McClayRDS ).
 
 ### <ins>Temp<ins>
 
