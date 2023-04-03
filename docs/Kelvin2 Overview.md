@@ -34,7 +34,7 @@ There are 4 pools of storage on Kelvin2 :
 
     /tmp
 
-- Local scratch disk on nodes
+- Local scratch disk on nodes.
 - Data will be automatically deleted when session ends.
 
 ### <ins>McClayRDS<ins>
@@ -42,7 +42,7 @@ There are 4 pools of storage on Kelvin2 :
     /mnt/autofs/mcclayrds-projects
     
 - QUB only
-- Available only from  login and data movement nodes
-- Group quotas enabled
-- Replicated to secondary site
-- To apply for storage on McClayRDS, contact the Research Data Management team [here](https://libguides.qub.ac.uk/ResearchDataManagement/Introduction)
+- Available only from  login and data movement nodes.
+- Group quotas enabled.
+- Replicated to secondary site.
+- To apply for storage on McClayRDS, contact the Research Data Management team [here](https://libguides.qub.ac.uk/ResearchDataManagement/Introduction).
