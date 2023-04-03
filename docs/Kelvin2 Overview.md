@@ -45,3 +45,4 @@ There are 4 pools of storage on Kelvin2 :
 - Available only from  login and data movement nodes
 - Group quotas enabled
 - Replicated to secondary site
+- To apply for storage on McClayRDS, contact the Research Data Management team [here](https://libguides.qub.ac.uk/ResearchDataManagement/Introduction)
