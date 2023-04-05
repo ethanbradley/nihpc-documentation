@@ -5,6 +5,7 @@ nav:
     - 'Getting Started.md'
     - 'Modules & Jobscripts.md'
     - 'Job Submission.md'
+    - 'Applications.md'
 theme:
   name: material
   features:

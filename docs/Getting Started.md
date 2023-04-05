@@ -32,8 +32,8 @@ There are 2 ways to connect to Kelvin2:<br />
 
 #### QUB Network
  If you are within a QUB network you can connect to kelvin2 using your credentials and the following ssh command : 
-
-     ssh kelvin2.qub.ac.uk 
+ 
+    ssh kelvin2.qub.ac.uk 
 
 #### Remote Access
 
