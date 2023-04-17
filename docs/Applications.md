@@ -14,7 +14,7 @@ If X11 forwarding is enabled, running the command matlab will open Matlab's GUI 
 
         matlab -nosplash -nodisplay
 
-However, please, do not run Matlab on login nodes. 
+However, please, DO NOT RUN MATLAB NOR ANY OTHER SOFTWARE ON LOGIN NODES. 
 
 ### Running Matlab interactively: srun + parfor (CPUs)
 
