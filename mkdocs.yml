@@ -1,1 +1,51 @@
-site_name: My Docs
+site_name: NIHPC Documentation
+nav:
+    - 'index.md'
+    - 'Kelvin2 Overview.md'
+    - 'Getting Started.md'
+    - 'Modules & Jobscripts.md'
+    - 'Job Submission.md'
+    - 'Applications.md'
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+  language: en
+  palette:
+  - scheme: slates
+    primary: red
+
+    extra:
+    social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/home
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.mark
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
