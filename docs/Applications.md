@@ -57,7 +57,7 @@ Ulster: TBA
 
 When the module is loaded, license parameters for QUB are loaded by default. Ulster users should change these license parameters in their batch script or interactive session. Contact the person in charge of the license for details.
 User manual for Ansys is not publicly available, and only licensed users can access to it. To access to this material, register yourself in the Ansys web seite. </br>
-[https://customercenter.ansys.com](https://customercenter.ansys.com)
+[https://customercenter.ansys.com](https://customercenter.ansys.com){target=_blank}
 
 ### Load Ansys module
 
@@ -77,7 +77,7 @@ The latest installed version on Kelvin-2 is the 2023R1. To load Ansys:
     #SBATCH --partition=k2-hipri
     #SBATCH --mem=100G
 
-    module load ansys/195
+    module load apps/ansys/2023.1
 
     ## QUB's license, already loaded with the module
     #export ANSYSLI_SERVERS=2325@143.117.212.118
@@ -100,7 +100,7 @@ The latest installed version on Kelvin-2 is the 2023R1. To load Ansys:
 ## Compilers
 
 Kelvin-2 has a large set of compilers and libraries for those users who compile their own self-programmed applications.
-We hardly recommend to avoid the system compilers, and to use those ones which are installed as modules. Modules for compilers as flagged in general as
+We hardly recommend avoiding the system compilers, and to use those ones which are installed as modules. Modules for compilers as flagged in general as
 
     compilers/<name>/<version>
 
@@ -108,12 +108,12 @@ And libraries
 
     libs/<name>/<version>/<compiler>
 
-where <compiler> states the compiler and version that it was compiled with, and in some cases, other libararies as dependencies.
+where <compiler> states the compiler and version that it was compiled with, and in some cases, other libraries as dependencies.
 If you are going to use a precompiled library, be sure to use for your application the same compiler and version that the particular library was compiled with.
 
 ### Compilers available on Kelvin-2
 
-On Kelvin-2, for usual programming languages as C, C++ or Fortran, we recommend to use the GNU compiling suite. It is well tested and it is currently the fastest for AMD systems. It is also a universal compiling suite, so any code will compile with it.
+On Kelvin-2, for usual programming languages as C, C++, or Fortran, we recommend using the GNU compiling suite. It is well tested, and it is currently the fastest for AMD systems. It is also a universal compiling suite, so any code will compile with it.
 
     compilers/gcc/10.2.0
     compilers/gcc/10.3.0
@@ -139,17 +139,17 @@ High-memory nodes have more RAM memory, but the model of the RAM and the process
 so a program compiled in the standard nodes will work in the high-memory nodes.
 
 One exception is to compile a program designed to work on the GPUs. 
-In this case, the session must be allocated in the k2-gpu partition, and it has to be allocated a GPU resource where the application will be executed. 
-For compatibility, we recommend to use the A100 GPUs to compile. Further details about how to compile for GPUs will be stated in the specific section.
+In this case, the session must be allocated in the k2-gpu partition, and it must be allocated a GPU resource where the application will be executed. 
+For compatibility, we recommend using the A100 GPUs to compile. Further details about how to compile for GPUs will be stated in the specific section.
 
     srun --pty --partition=k2-gpu --ntasks=1 --mem-per-cpu=4G --gres gpu:a100:1 bash
 
-### Compile parallel applications
+### Compiling parallel applications
 
 - OpenMP
 
- All the compilers have integrated the libraries to execute in parallel using the Open Multi Processor protocoll.
- In the case of the GNU compiler, the OpenMP protocoll is activated just adding the flag
+ All the compilers have integrated the libraries to execute in parallel using the Open Multi Processor protocol.
+ In the case of the GNU compiler, the OpenMP protocol is activated just adding the flag
 
      -fopemmp
 
@@ -157,12 +157,12 @@ For compatibility, we recommend to use the A100 GPUs to compile. Further details
 
 - MPI
 
- To compile using the Message Passing Interface protocoll, in Kelvin-2 it is necessary to load the modules for those libraries and change the compiling commands.
+ To compile using the Message Passing Interface protocol, in Kelvin-2 it is necessary to load the modules for those libraries and change the compiling commands.
  The modules that activate the MPI libraries are flagged in Kelvin-2 as
 
      mpi/<name>/<version>/<compiler>
 
- where <compiler> points the compiler and version that the MPI libraries where compiled with.
+ where <compiler> points the compiler and version that the MPI libraries were compiled with.
  This is important for compatibility of the compilations, it should be used the same compiler for the application than the one that was used to compile the MPI libraries.
 
  The available MPI implementations on Kelvin-2 are
@@ -183,7 +183,7 @@ For compatibility, we recommend to use the A100 GPUs to compile. Further details
      mpi/openmpi/4.0.4/gcc-9.3.0+ucx-1.8.0
      mpi/openmpi/4.1.1/gcc-9.3.0
 
- We hardly recommend to use the OpenMPI compiling suite, it has been widely tested, and it works stable on Kelvin-2.
+ We hardly recommend using the OpenMPI compiling suite, it has been widely tested, and it works stable on Kelvin-2.
  The MPICh suite has not been so deeply tested, and it is not guaranteed that applications compiled with it will work on Kelvin-2.
  If you decide to use the MPICh suite, be sure to test your application before using it for production.
 
@@ -234,5 +234,40 @@ For compatibility, we recommend to use the A100 GPUs to compile. Further details
  More information about OpenACC, including pdf user guides can be found in the web site </br>
  [https://www.openacc.org](https://www.openacc.org){target=_blank}
 
-### Compile applications that use GPUs
+### Compiling applications that use GPUs
+
+To compile a program designed to work on the Graphical Processing Units of Kelvin-2, it is essential that it is compiled in a GPU node, so the queue "k2-gpu" must be allocated.
+For backwards compatibility, the program must be compiled in the latest model of GPU present in the machine, in our case, the Nvidia A100 GPUs.
+So, when allocating the interactive session to carry out the compilation, the resource A100 should be allocated with the flag
+
+    --gres gpu:a100:1
+
+See the specific section to work with GPUs on Kelvin-2 for more information about how to allocate the resources
+[link TBA]
+
+During the last years, the popularity of the specific GPU-focused programming languages, such as CUDA, has decreased.
+This is due to the publicly-available libraries have become more and more complete, and practically any mathematical operation that can benefit of the acceleration advantages of a GPU is present on those libraries.
+Some examples are "cublas" for linear-algebra operations, and "cufft" for Fourier transforms.
+Most of the libraries designed to work in the GPUs of Kelvin-2 can be found in the module for the Nvidia CUDA drivers:
+
+    libs/nvidia-cuda/11.0.3/bin
+    libs/nvidia-cuda/11.7.0/bin
+
+These libraries can be including in the executables, as usual adding the flag "-l" to the compilation command, for example
+
+    gcc <flags> -lcublas -lcufft -o my_executable.x my_GPU_program.c
+
+Nevertheless, if you require a very specific operation, that is not present in the available libraries, and it is necessary to use CUDA, the Nvidia compiler can be used.
+Currently, the Nvidia compiler is the only one installed on Kelvin-2 that can compile CUDA code
+
+    nvhpc/22.7
+    nvhpc/22.7-byo
+    nvhpc/22.7-nompi
+
+This compiler can recognise the sections of the code in an intelligent way, so there is no need of more flags to point that it includes CUDA routines.
+To compile with Nvidia compiler, just use its usual commands
+
+    nvc <flags> -o my_executable.x my_CUDA_C_program.c
+    nvc++ <flags> -o my_executable.x my_CUDA_C++_program.cxx
+    nvfortran <flags> -o my_executable.x my_CUDA_Fortran_program.for
 
