@@ -97,7 +97,7 @@ The latest installed version on Kelvin-2 is the 2023R1. To load Ansys:
     #Run Ansys Fluent.
     fluent 3ddp -g -t$SLURM_NTASKS -pinfiniband -mpi=openmpi -cnf=hosts.$SLURM_JOB_ID.txt -i my_fluent_input > my_fluent_output.res
 
-## Developers: compile your own applications.
+## Compilers
 
 Kelvin-2 has a large set of compilers and libraries for those users who compile their own self-programmed applications.
 We hardly recommend to avoid the system compilers, and to use those ones which are installed as modules. Modules for compilers as flagged in general as
