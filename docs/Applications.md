@@ -2,46 +2,119 @@
 
 Here we will provide information on some of the most popular centrally installed applications and software tools on Kelvin2.
 
-## Matlab
+## **Matlab**
 
 MATLAB is a proprietary multi-paradigm programming language and numeric computing environment developed by MathWorks. MATLAB allows matrix manipulations, plotting of functions and data, implementation of algorithms, creation of user interfaces, and interfacing with programs written in other languages.
 
 How to load the application:
 
-        module load matlab/R2022a
+``` bash
+module load matlab/R2022a
+```
 
-If X11 forwarding is enabled, running the command matlab will open Matlab's GUI (it works in Mobaxterm). Otherwise, run Matlab in console mode with command:
+If X11 forwarding is enabled, running the command `matlab` will open the Matlab's GUI (it works in Mobaxterm). Otherwise, launch Matlab in console mode as follows:
 
-        matlab -nosplash -nodisplay
+``` bash
+matlab -nosplash -nodisplay
+```
 
-However, please, DO NOT RUN MATLAB NOR ANY OTHER SOFTWARE ON LOGIN NODES. 
+However, please, **==DO NOT RUN MATLAB NOR ANY OTHER SOFTWARE ON LOGIN NODES==**. 
 
-### Running Matlab interactively: srun + parfor (CPUs)
+### ***Running Matlab interactively: srun + parfor (CPUs)***
 
-One of the two correct ways to run Matlab is to request a compute node (interactively) with command srun.
+One of the two correct ways to run Matlab is to request a compute node (interactively) with the `srun` command.
 
 For example, request 1 compute node and 10 cores in "k2-hipri" partition:
 
-        $ srun -p k2-hipri -N 1 -n 10 --mem=20G --time=1:00:00 --pty bash
-        $ module load matlab/R2022a
-        $ matlab -nosplash -nodisplay
+``` bash
+srun -p k2-hipri -N 1 -n 10 --mem=10G --time=1:00:00 --pty bash
+module load matlab/R2022a
+matlab -nosplash -nodisplay
+```
 
-Then, inside Matlab, run parpool for the "local" cluster requesting the same amount of workers as specified in srun:
+Then, inside Matlab, notice that calling the function `feature` (line #1 below) must show that exactly 10 CPU cores are available, corresponding to the number of cores allocated above with the `srun` command. Next, the codes launches the parallel pool (`parpool`) for the "local" cluster requesting the same amount of workers as the cores allocated in this example.
 
-        p = parpool('local', 10) % 10 cores requested in this example
+``` matlab linenums="1"
+feature('numcores')
+p = parpool('local', 10) % 10 cores requested in this example
+```
 
 More robust, the number of workers can be read and set automatically to launch the parallel pool:
 
-        num_workers = str2double(getenv('SLURM_CPUS_ON_NODE'))
-        p = parpool('local', num_workers)
+``` matlab
+num_workers = str2double(getenv('SLURM_CPUS_ON_NODE'))
+p = parpool('local', num_workers)
+```
 
-Finally, you can run your parallel code, which must include "parfor", with Matlab environment. The parallel cluster can be released with the following commnand:
+Finally, you can run your Matlab parallel code, which must include a "parfor" loop. For example, the following code illustrates the use of `parfor` and Monte Carlo simulation to calculate an approximate value for \( \pi \), using the formula (line #7):
 
-        delete(gcp('nocreate'))
+$$
+\pi \approx \lim_{N_{MC} \to \infty} {4 \sum_{n=1}^{N_{MC}} I(x_i^2 + y_i^2 < 1.0) \over N_{MC}}; x_i, y_i \sim \mathcal{U}(0,1),
+$$
 
-### Running Matlab interactively: srun + GPUs
+where the symbol \( \mathcal{U}(0,1) \) represents the random uniform distribution for the indicated interval and \( I(boolean) \) is an indicator function.
 
-### Running Matlab in background: sbatch
+``` matlab title="Matlab code for parfor demonstration" linenums="1"
+N = 1e6;
+out = zeros(1, num_workers);
+parfor i = 1:num_workers
+	xy = rand(N,2);
+	out(i) = sum(sum(xy.^2,2)<=1);
+end
+mypi = 4*sum(out)/(N*num_workers)
+```
+
+At the end of the parallel computations, the allocated parpool within Matlab can be released with the following command:
+
+``` matlab
+delete(gcp('nocreate'))
+```
+
+### ***Running Matlab interactively: srun + GPUs***
+
+### ***Running Matlab with GUI directly on a compute node***
+
+First, get a compute node and launch vnc server from the node, for example:
+
+``` bash
+srun -p k2-hipri -N 1 -n 6 --mem=10G --time=1:00:00 --pty bash
+vncserver
+```
+
+In this case, let us assume that the output of `vncserver` is
+
+*New 'node117.pri.kelvin2.alces.network:1 (jsan)' desktop is node117.pri.kelvin2.alces.network:1*
+
+*Starting applications specified in /users/jsan/.vnc/xstartup*<br>
+*Log file is /users/jsan/.vnc/node117.pri.kelvin2.alces.network:1.log*
+
+Then, open a local terminal and launch a forward tunnel to the compute node by following these steps:
+
+1. Go to the directory which contains the kelvin key in your PC/laptop
+``` bash	
+cd /drives/c/Users/jsan/.ssh
+```
+2. Create the tunnel (in this example illustrated with the command below, all input sent via port *5903* on your local host is being forwarded via port *5901* to the compute node *"node117.pri.kelvin2.alces.network"*. If the `vncserver` output above were *"node117.pri.kelvin2.alces.network:7"*, then the port number will be *5907* instead of *5901*. Clearly, users must replace the username *"jsan"* and the key's filename by the corresponding information for their accounts)
+``` bash	
+ssh -L 5903:node117.pri.kelvin2.alces.network:5901 -p 55890 -i ./kelvin-key jsan@login.kelvin.alces.network
+```
+3. Connect to the tunnel using your installed VNC application (the example shown in the figure below uses TurboVNC in Windows OS. More details or troubleshooting can be found in the VNC session)
+![Image title](assets/TurboVNC.jpg)
+4. Once in the opened terminal for the connected compute node, launch the matlab application:
+```bash
+module load matlab/R2022a
+matlab
+```
+
+This time matlab GUI will be opened as shown in the figure below. For a better experience, use the "full screen" button in the VNC toolbar, and use the combination keys ++ctrl+alt+shift++ + F to escape from the full screen mode. Note also that using the instruction `feature('numcores')` inside the Matlab's GUI session shows correctly the number of allocated CPU cores in the compute node (CPU cores equal to 6 in this example).
+
+![Image title](assets/TurboVNC_Matlab.jpg){ width="800" }
+
+### ***Running Matlab in background: sbatch***
+
+Finally, the most convenient way is to run Matlab in background, particularly for analysis where calculations take days. Several examples are discussed next.
+
+## **Python with Anaconda**
 
 ## Python with Anaconda
 
