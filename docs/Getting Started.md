@@ -182,7 +182,9 @@ To copy files across to kelvin use pscp or scp. Give the full path to the direct
 
 <ins>Linux OS:<ins><br />
 
-    scp –P 55890 "C:\Users\MyPC\Documents\test.txt" -i my_kelvin_key <username>@login.kelvin.alces.network
+Attention that the "-P" flag to specify the ssh port must be in capital
+
+    scp –P 55890 -i ~/.ssh/my_kelvin_key ~/test.txt <username>@login.kelvin.alces.network:~
 
 ### Windows. Using scp clients.
 In Windows machines, MobaXTerm and WinSCP can be used to transfer files from and to Kelvin-2 in a graphical easy way. Already saved sessions of MobaXTerm or PuTTy can be used.
