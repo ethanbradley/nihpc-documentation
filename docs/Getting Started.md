@@ -30,12 +30,12 @@ There are 2 ways to connect to Kelvin2:<br />
 2. Remote access<br />
 
 
-#### QUB Network
+### QUB Network
  If you are within a QUB network you can connect to kelvin2 using your credentials and the following ssh command : 
  
-    ssh kelvin2.qub.ac.uk 
+    ssh <username>@kelvin2.qub.ac.uk 
 
-#### Remote Access
+### Remote Access
 
  Kelvin2 can be accessed from outside the QUB network by using SSH keys.<br /> 
  - Kelvin server name: login.kelvin.alces.network<br />
@@ -93,6 +93,85 @@ Note: if you are away from the QUB campus and hence do not have access to Kelvin
 
         ssh –p 55890 –i ~/.ssh/my-kelvin-key <username>@login.kelvin.alces.network
 
+### Windows. Using a remote ssh client.
+
+For Windows users, the recommended way to connect to Kelvin-2, it is using a ssh client. The two recommended options are MobaXTerm and PuTTy.
+
+#### MobaXTerm
+
+MobaXTerm is the recommended ssh client. It can be downloaded from the web <br />
+[https://mobaxterm.mobatek.net](https://mobaxterm.mobatek.net){target=_blank}
+
+To configure the remote session, firstly download and install MobaXTerm. Then, open it and follow the steps:
+
+  1. On the initial screen, click on "Sessions".
+
+    ![MobaXTerm initial screen](assets/MobaXTerm1.png) <br />
+
+  2. On the "Sessions" screen, click on "SSH".
+
+    ![MobaXTerm Sessions screen](assets/MobaXTerm2.png)
+
+  3. On the "SSH" screen, fill the following fields:
+
+    - Remote host: "kelvin2.qub.ac.uk" from inside the QUB campus, or "login.kelvin.alces.network" from outside the QUB campus.
+    - Tick "Specify username", and fill the box with your Kelvin-2 username.
+    - Port: "22" from inside the QUB campus, or "55890" from outside the QUB campus.
+
+    Click on "Advanced SSH Settings"
+
+    ![MobaXTerm SSH screen](assets/MobaXTerm3.png)
+
+  4. On the "Advanced SSH Settings" screen, fill the following fields:
+
+    - Tick "X11-Forwarding". This will allow to open graphical applications.
+    - Only if you are connecting from ouside the QUB campus, tick "Use private key". Then click on the "paper sheet" icon on the right of the box, and select your private key file "my-kelvin-key".
+    - Click the "OK" box on the bottom of the Window.
+
+    The session will be stored for future use, and it will appear on the left part of the initial MobaXTerm window, under the tab "Sessions". To connect again, just click on the session.
+
+    ![MobaXTerm Advanced SSH screen](assets/MobaXTerm4.png)
+
+
+#### PuTTy
+
+To use PuTTy as remote ssh client, the configuration is similar than with MobaXTerm. It is necessary to configure a session, and then it is ready to connect.
+
+PuTTy can be installed from the Microsoft store, or downloaded from the web
+
+[https://www.putty.org](https://www.putty.org){target=blank}
+
+Install PuTTy and its components.
+
+If you are connecting from outside the QUB campus, firstly you have to convert the private key "my-kelvin-key" to the PuTTy Private Key format ".ppk". To do so, you need to open the component "PuTTygen", and follow the steps
+
+  1. Click on "Actions - Load an existing private key file - Load".
+
+    ![PuTTygen screen](assets/PuTTygen1.png)
+
+  2. When the browse window pops up, on the bottom right corner, change the file format from "PuTTy Private Key Files (*.ppk)" to "All files (*.*)". Then, browse in your system and select your private-key file "my-kelvin-key". You will be asked for the passphrase.<br />
+    The ssh public key, the fingerprint, and other parameters will show up on the screen. Then click on "Save private key", and save it under the name "my-kelvin-key.ppk".
+
+Now, you can configure your session in PuTTy, following the steps:
+
+  1. On the initial window, fill the fields:
+
+    - Host name (or IP address): "<username\>@kelvin2.qub.ac.uk" to connect from inside the QUB campus, or "<username\>@login.kelvin.alces.network" from outside the QUB campus.
+    - Port: "22" to connect from inside the QUB campus, or "55890" from outside the QUB campus.
+    - Connection type: click on "SSH".
+    - Saved sessions: give a name to your session and click on "Save".
+
+    ![PuTTy Session](assets/PuTTy1.png)
+
+  2. Now click on the tab "Connection - SSH - X11". Tick on "Enable X11 forwarding", this will allow to open graphical applications.
+
+    ![PuTTy X11](assets/PuTTy2.png)
+
+  3. Only if you are connecting from outside the QUB campus, click on the tab "Connection - SSH - Auth". At the bottom, go to the box "Private key file for authentication", and click on "Browse". Select your private-key file "my-kelvin-key.ppk".
+
+    ![PuTTy Auth](assets/PuTTy3.png)
+
+  4. Go back to the tab "Session" and save the created session, it will appear in the big box. To connect, just select your session from the box, and click on "Open" at the bottom of the window.
 
 ## Copying data to Kelvin2
 To copy files across to kelvin use pscp or scp. Give the full path to the directory/file to be copied and connect using your credentials, like below:<br />
@@ -103,4 +182,30 @@ To copy files across to kelvin use pscp or scp. Give the full path to the direct
 
 <ins>Linux OS:<ins><br />
 
-    scp –p 55890 "C:\Users\MyPC\Documents\test.txt" -i my_kelvin_key <username>@login.kelvin.alces.network
+    scp –P 55890 "C:\Users\MyPC\Documents\test.txt" -i my_kelvin_key <username>@login.kelvin.alces.network
+
+### Windows. Using scp clients.
+In Windows machines, MobaXTerm and WinSCP can be used to transfer files from and to Kelvin-2 in a graphical easy way. Already saved sessions of MobaXTerm or PuTTy can be used.
+
+#### MobaXTerm
+When the MobaXTerm session is opened, it will appear on the left tab window a tab "sftp". This tab will contain all your files and directories on Kelvin-2. You can browse on this directory tree, and use the icons on the top of the tab to upload and download files to and from Kelvin-2, using the sftp protocol.<br />
+With MobaXTerm, you can transfer files to your home or your scratch directory.
+
+  ![MobaXTerm Open Session](assets/MobaXTerm-sftp.png)
+
+#### WinSCP
+WinSCP can be downloaded from its oficial web site
+
+[https://winscp.net/eng/index.php](https://winscp.net/eng/index.php){target=blank}
+
+Download and install WinSCP, then open it.
+
+When you open WinSCP, on the left box, they will appear all your saved sessions with PuTTy, without necessity of configuring new ones. Just click on your PuTTy session to connect to Kelvin-2, you will be asked for your password or passphrase, and then you will be connected to Kelvin-2.
+
+  ![WinSCP startup](assets/WinSCP1.png)
+
+Once you open the session, a window with two columns will appear, the one on the left showing the files and directories on your local Windows machine, and the one on the right showing your files and directories on Kelvin-2.<br />
+To transfer files between the machines, just drag them from one column to the other.<br />
+To exit and close the session safely, click on the "X" icon on the top of the left column.
+
+  ![WinSCP transferring files](assets/WinSCP2.png)
