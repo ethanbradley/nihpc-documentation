@@ -315,8 +315,7 @@ So, when allocating the interactive session to carry out the compilation, the re
 
     --gres gpu:a100:1
 
-See the specific section to work with GPUs on Kelvin-2 for more information about how to allocate the resources
-[link TBA]
+See the specific [section](Job Submission.md#advanced-working-with-gpus-on-kelvin-2) to work with GPUs on Kelvin-2 for more information about how to allocate the resources.
 
 During the last years, the popularity of the specific GPU-focused programming languages, such as CUDA, has decreased.
 This is due to the publicly-available libraries have become more and more complete, and practically any mathematical operation that can benefit of the acceleration advantages of a GPU is present on those libraries.
