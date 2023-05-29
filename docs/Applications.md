@@ -170,6 +170,61 @@ The latest installed version on Kelvin-2 is the 2023R1. To load Ansys:
     #Run Ansys Fluent.
     fluent 3ddp -g -t$SLURM_NTASKS -pinfiniband -mpi=openmpi -cnf=hosts.$SLURM_JOB_ID.txt -i my_fluent_input > my_fluent_output.res
 
+## Paraview
+
+A recommended method to run Paraview on Kelvin-2, it is to start a PV server on Kelvin-2, and to use your local machine to visualize the graphical interface. In this case, you need an installation of Paraview in your local machine as well.
+
+With the following method, Paraview can be run in parallel, and use the local machine to work with the graphical interface.
+It is necessary to set a tunnel through the Kelvin-2 login node.
+
+As example, we are going to explain how to set the tunnel and connect with a computer outside the QUB campus. If the local machine is insithe the QUB campus, you have to remove the specification of the port `-p`, the identification private-key file `-i`, and to change the IP name to `kelvin2.qub.ac.uk`.
+
+<ins>Step 1</ins>. Run pvserver in a computing node of Kelvin-2.
+
+Open the session in Kelvin-2 as usual, and then open an interactive session. `<N>` will be the number of cores you require for your parallel job on Paraview.
+
+    $ srun --pty --partition=k2-hipri --ntasks=<N> --mem-per-cpu=2G /bin/bash
+
+Then, you are transferred to a computing node.
+
+Now load the necessary modules, for paraview, and for OpenMPI.
+
+    [<uid>@nodeNNN [kelvin2] ~]$ module load apps/paraview/5.8.1/bin
+    [<uid>@nodeNNN [kelvin2] ~]$ module load mpi/openmpi/4.0.4/gcc-9.3.0+ucx-1.8.0
+
+Run the server with the command
+
+    [<uid>@nodeNNN [kelvin2] ~]$ mpirun -np <N> pvserver --force-offscreen-rendering --server-port=<YYYY>
+
+Where `<uid>` is your Kelvin-2 username, `<N>` is the number of MPI tasks you want to run Paraview, and `<YYYY>` is a port number your choice.
+
+<ins>Step 2</ins>. Create the tunnel to the port `<YYYY>`, through the port `<XXXX>` of your local machine.
+
+In a different shell on your local machine, open the tunnel with the command:
+
+    (local)$ ssh -L <XXXX>:nodeNNN:<YYYY> -p 55890 -i ~/.ssh/my-kelvin-key <uid>@login.kelvin.alces.network
+
+Where `<uid>` is your Kelvin-2 username, `<YYYY>` is the port number you let open in the former step, and `<XXXX>` is a different port number your choice on your local machine.
+`nodeNNN` is the computing node that the `srun` command directed you in the former step.
+
+<ins>Step 3</ins>. Open paraview in your local machine.
+
+Inside the application click:<br>
+File - Connect<br>
+- Give a name to the session, e. g. "remote machine"<br>
+- In "Server Type" choose: Client / Server<br>
+- host: localhost<br>
+- Port: `<XXXX>`  (from step 2)<br>
+
+Configure<br>
+- Startup Type: Manual<br>
+- Press Save<br>
+
+Connect<br>
+Once you created the client the first time, you can recover it the next time you open Paraview, you do not need to create it again, and you can connect directly in the step 3.
+
+![Paraview Frontend](assets/Paraview_fronted.png)
+
 ## Compilers
 
 Kelvin-2 has a large set of compilers and libraries for those users who compile their own self-programmed applications.
