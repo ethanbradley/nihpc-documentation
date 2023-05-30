@@ -93,9 +93,9 @@ Note: if you are away from the QUB campus and hence do not have access to Kelvin
 
         ssh –p 55890 –i ~/.ssh/my-kelvin-key <username>@login.kelvin.alces.network
 
-### Windows. Using a remote ssh client.
+### SSH clients
 
-For Windows users, the recommended way to connect to Kelvin-2, it is using a ssh client. The two recommended options are MobaXTerm and PuTTy.
+For Windows users, the recommended way to connect to Kelvin-2 is via a ssh client. The two most popular options are MobaXTerm and PuTTy.
 
 #### MobaXTerm
 
@@ -134,23 +134,20 @@ To configure the remote session, firstly download and install MobaXTerm. Then, o
 
 
 #### PuTTy
-
-To use PuTTy as remote ssh client, the configuration is similar than with MobaXTerm. It is necessary to configure a session, and then it is ready to connect.
-
-PuTTy can be installed from the Microsoft store, or downloaded from the web
-
+ 
+PuTTy can be installed from the Microsoft store, or downloaded from the web :
 [https://www.putty.org](https://www.putty.org){target=blank}
 
-Install PuTTy and its components.
+To use PuTTy as a remote ssh client, the configuration is similar to MobaXTerm. To begin, you will need to configure a session:
 
-If you are connecting from outside the QUB campus, firstly you have to convert the private key "my-kelvin-key" to the PuTTy Private Key format ".ppk". To do so, you need to open the component "PuTTygen", and follow the steps
+If you are connecting from outside the QUB campus, you must convert the private key "my-kelvin-key" to the PuTTy Private Key format ".ppk". To do so, you need to open the component "PuTTygen", and follow the steps
 
   1. Click on "Actions - Load an existing private key file - Load".
 
     ![PuTTygen screen](assets/PuTTygen1.png)
 
-  2. When the browse window pops up, on the bottom right corner, change the file format from "PuTTy Private Key Files (*.ppk)" to "All files (*.*)". Then, browse in your system and select your private-key file "my-kelvin-key". You will be asked for the passphrase.<br />
-    The ssh public key, the fingerprint, and other parameters will show up on the screen. Then click on "Save private key", and save it under the name "my-kelvin-key.ppk".
+  2. When the browse window opens, change the file format from "PuTTy Private Key Files (*.ppk)" to "All files (*.*)". Then, browse in your system and select your private-key file "my-kelvin-key". You will be asked for the passphrase.<br />
+Select "Save private key", and save it under the name "my-kelvin-key.ppk".
 
 Now, you can configure your session in PuTTy, following the steps:
 
@@ -171,7 +168,7 @@ Now, you can configure your session in PuTTy, following the steps:
 
     ![PuTTy Auth](assets/PuTTy3.png)
 
-  4. Go back to the tab "Session" and save the created session, it will appear in the big box. To connect, just select your session from the box, and click on "Open" at the bottom of the window.
+  4. Go back to the tab "Session" and save the created session, it will appear in the big box. To connect, select your session from the box, and click on "Open" at the bottom of the window.
 
 ## Copying data to Kelvin2
 To copy files across to kelvin use pscp or scp. Give the full path to the directory/file to be copied and connect using your credentials, like below:<br />
