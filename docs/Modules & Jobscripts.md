@@ -105,33 +105,7 @@ less than 10 days.
 - avx512 – run a job on an avx512 enabled node.
 - k2-esprc – run a job on esprc nodes (only esprc users).
     
-GPU's
-
-Available GPU hardware :
-
-| Nodes        | GPU type                 | GRES type | Total | Partition          |
-|:------------ |:-------------------------|----------:|------:|:-------------------|
-|gpu01         |1 x Quadro K4200          |k4200      |  1    |gpu bio-gpu         |
-|gpu02         |4 x Tesla V100 SXM2 32GB  |v100       |  4    |bio-gpu             |
-|gpu103-110    |4 x Tesla V100 PCIe 32GB  |v100       | 32    |k2-gpu k2-epsrc-gpu |
-|gpu111-113    |4 x Tesla A100 SXM4 80GB  |a100       | 12    |k2-gpu k2-epsrc-gpu |
-|gpu114        |28 x CI slices of A100    |1g.10gb    | 28    |k2-gpu k2-epsrc-gpu |
-
-## GPU resource allocation
-To allocate GPU resources, you need to specify it with flag :
-
-    #SBATCH --gres 
-
-and the specific resource, for example:
-
-- Tesla V100 PCIe 32 Gb, full GPU only: `--gres gpu:v100:1`
-- Tesla A100 SXM4 80GB, full GPU: `--gres gpu:a100:1`
-- CI slices of the A100 in gpu114: `--gres gpu:1g.10gb:1`
-
-For further job scheduler instructions please see the [official slurm documentation.](https://slurm.schedmd.com/pdfs/summary.pdf)
-
-
-#### Full example jobscript
+ #### Full example jobscript
 
 Once you have completed giving your jobscript the correct scheduler instructions you can then move onto loading the correct applications to your environment & running any commands.
 
@@ -161,3 +135,29 @@ Below is a full example jobscript:
         python3 test_job.py
 
 
+
+    
+### GPU's
+
+Available GPU hardware :
+
+| Nodes        | GPU type                 | GRES type | Total | Partition          |
+|:------------ |:-------------------------|----------:|------:|:-------------------|
+|gpu01         |1 x Quadro K4200          |k4200      |  1    |gpu bio-gpu         |
+|gpu02         |4 x Tesla V100 SXM2 32GB  |v100       |  4    |bio-gpu             |
+|gpu103-110    |4 x Tesla V100 PCIe 32GB  |v100       | 32    |k2-gpu k2-epsrc-gpu |
+|gpu111-113    |4 x Tesla A100 SXM4 80GB  |a100       | 12    |k2-gpu k2-epsrc-gpu |
+|gpu114        |28 x CI slices of A100    |1g.10gb    | 28    |k2-gpu k2-epsrc-gpu |
+
+#### GPU resource allocation
+To allocate GPU resources, you need to specify it with flag :
+
+    #SBATCH --gres 
+
+and the specific resource, for example:
+
+- Tesla V100 PCIe 32 Gb, full GPU only: `--gres gpu:v100:1`
+- Tesla A100 SXM4 80GB, full GPU: `--gres gpu:a100:1`
+- CI slices of the A100 in gpu114: `--gres gpu:1g.10gb:1`
+
+For further job scheduler instructions please see the [official slurm documentation.](https://slurm.schedmd.com/pdfs/summary.pdf)
