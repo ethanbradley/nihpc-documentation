@@ -186,28 +186,13 @@ Attention that the "-P" flag to specify the ssh port must be in capital
 
     scp –P 55890 -i ~/.ssh/my_kelvin_key ~/test.txt <username>@login.kelvin.alces.network:~
 
-### Windows. Using scp clients.
+### Windows scp clients
 In Windows machines, MobaXTerm and WinSCP can be used to transfer files from and to Kelvin-2 in a graphical easy way. Already saved sessions of MobaXTerm or PuTTy can be used.
 
-#### MobaXTerm
-When the MobaXTerm session is opened, it will appear on the left tab window a tab "sftp". This tab will contain all your files and directories on Kelvin-2. You can browse on this directory tree, and use the icons on the top of the tab to upload and download files to and from Kelvin-2, using the sftp protocol.<br />
-With MobaXTerm, you can transfer files to your home or your scratch directory.
+- MobaXTerm:  <br />
+[https://mobaxterm.mobatek.net](https://mobaxterm.mobatek.net)
 
-  ![MobaXTerm Open Session](assets/MobaXTerm-sftp.png)
+- WinSCP: <br />
+[https://winscp.net/eng/index.php](https://winscp.net/eng/index.php)
 
-#### WinSCP
-WinSCP can be downloaded from its oficial web site
 
-[https://winscp.net/eng/index.php](https://winscp.net/eng/index.php){target=blank}
-
-Download and install WinSCP, then open it.
-
-When you open WinSCP, on the left box, they will appear all your saved sessions with PuTTy, without necessity of configuring new ones. Just click on your PuTTy session to connect to Kelvin-2, you will be asked for your password or passphrase, and then you will be connected to Kelvin-2.
-
-  ![WinSCP startup](assets/WinSCP1.png)
-
-Once you open the session, a window with two columns will appear, the one on the left showing the files and directories on your local Windows machine, and the one on the right showing your files and directories on Kelvin-2.<br />
-To transfer files between the machines, just drag them from one column to the other.<br />
-To exit and close the session safely, click on the "X" icon on the top of the left column.
-
-  ![WinSCP transferring files](assets/WinSCP2.png)
