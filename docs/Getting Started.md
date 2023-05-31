@@ -114,9 +114,9 @@ To configure the remote session, firstly download and install MobaXTerm. Then, o
 
   3. On the "SSH" screen, fill the following fields:
 
-    - Remote host: "kelvin2.qub.ac.uk" from inside the QUB campus, or "login.kelvin.alces.network" from outside the QUB campus.
+    - Remote host: `kelvin2.qub.ac.uk` from inside the QUB campus, or `login.kelvin.alces.network` from outside the QUB campus.
     - Tick "Specify username", and fill the box with your Kelvin-2 username.
-    - Port: "22" from inside the QUB campus, or "55890" from outside the QUB campus.
+    - Port: `22` from inside the QUB campus, or `55890` from outside the QUB campus.
 
     Click on "Advanced SSH Settings"
 
@@ -125,7 +125,7 @@ To configure the remote session, firstly download and install MobaXTerm. Then, o
   4. On the "Advanced SSH Settings" screen, fill the following fields:
 
     - Tick "X11-Forwarding". This will allow to open graphical applications.
-    - Only if you are connecting from ouside the QUB campus, tick "Use private key". Then click on the "paper sheet" icon on the right of the box, and select your private key file "my-kelvin-key".
+    - Only if you are connecting from ouside the QUB campus, tick "Use private key". Then click on the "paper sheet" icon on the right of the box, and select your private key file `my-kelvin-key`.
     - Click the "OK" box on the bottom of the Window.
 
     The session will be stored for future use, and it will appear on the left part of the initial MobaXTerm window, under the tab "Sessions". To connect again, just click on the session.
@@ -140,21 +140,21 @@ PuTTy can be installed from the Microsoft store, or downloaded from the web :
 
 To use PuTTy as a remote ssh client, the configuration is similar to MobaXTerm. To begin, you will need to configure a session:
 
-If you are connecting from outside the QUB campus, you must convert the private key "my-kelvin-key" to the PuTTy Private Key format ".ppk". To do so, you need to open the component "PuTTygen", and follow the steps
+If you are connecting from outside the QUB campus, you must convert the private key `my-kelvin-key` to the PuTTy Private Key format `.ppk`. To do so, you need to open the component "PuTTygen", and follow the steps
 
   1. Click on "Actions - Load an existing private key file - Load".
 
     ![PuTTygen screen](assets/PuTTygen1.png)
 
-  2. When the browse window opens, change the file format from "PuTTy Private Key Files (*.ppk)" to "All files (*.*)". Then, browse in your system and select your private-key file "my-kelvin-key". You will be asked for the passphrase.<br />
-Select "Save private key", and save it under the name "my-kelvin-key.ppk".
+  2. When the browse window opens, change the file format from "PuTTy Private Key Files (\*.ppk)" to "All files (\*.\*)". Then, browse in your system and select your private-key file `my-kelvin-key`. You will be asked for the passphrase.<br />
+Select "Save private key", and save it under the name `my-kelvin-key.ppk`.
 
 Now, you can configure your session in PuTTy, following the steps:
 
   1. On the initial window, fill the fields:
 
-    - Host name (or IP address): "<username\>@kelvin2.qub.ac.uk" to connect from inside the QUB campus, or "<username\>@login.kelvin.alces.network" from outside the QUB campus.
-    - Port: "22" to connect from inside the QUB campus, or "55890" from outside the QUB campus.
+    - Host name (or IP address): `<username>@kelvin2.qub.ac.uk` to connect from inside the QUB campus, or `<username>@login.kelvin.alces.network` from outside the QUB campus.
+    - Port: `22` to connect from inside the QUB campus, or `55890` from outside the QUB campus.
     - Connection type: click on "SSH".
     - Saved sessions: give a name to your session and click on "Save".
 
@@ -164,7 +164,7 @@ Now, you can configure your session in PuTTy, following the steps:
 
     ![PuTTy X11](assets/PuTTy2.png)
 
-  3. Only if you are connecting from outside the QUB campus, click on the tab "Connection - SSH - Auth". At the bottom, go to the box "Private key file for authentication", and click on "Browse". Select your private-key file "my-kelvin-key.ppk".
+  3. Only if you are connecting from outside the QUB campus, click on the tab "Connection - SSH - Auth". At the bottom, go to the box "Private key file for authentication", and click on "Browse". Select your private-key file `my-kelvin-key.ppk`.
 
     ![PuTTy Auth](assets/PuTTy3.png)
 
@@ -173,13 +173,13 @@ Now, you can configure your session in PuTTy, following the steps:
 ## Copying data to Kelvin2
 To copy files across to kelvin use pscp or scp. Give the full path to the directory/file to be copied and connect using your credentials, like below:<br />
 
-<ins>Windows OS with putty installed<ins><br />
+<ins>Windows OS with putty installed</ins><br />
 
     pscp –p 55890 "C:\Users\MyPC\Documents\test.txt" -i my_kelvin_key <username>@login.kelvin.alces.network
 
-<ins>Linux OS:<ins><br />
+<ins>Linux OS:</ins><br />
 
-Attention that the "-P" flag to specify the ssh port must be in capital
+Attention that the `-P` flag to specify the ssh port must be in capital
 
     scp –P 55890 -i ~/.ssh/my_kelvin_key ~/test.txt <username>@login.kelvin.alces.network:~
 
@@ -187,9 +187,9 @@ Attention that the "-P" flag to specify the ssh port must be in capital
 In Windows machines, MobaXTerm and WinSCP can be used to transfer files from and to Kelvin-2 in a graphical easy way. Already saved sessions of MobaXTerm or PuTTy can be used.
 
 - MobaXTerm:  <br />
-[https://mobaxterm.mobatek.net](https://mobaxterm.mobatek.net)
+[https://mobaxterm.mobatek.net](https://mobaxterm.mobatek.net){target=blank}
 
 - WinSCP: <br />
-[https://winscp.net/eng/index.php](https://winscp.net/eng/index.php)
+[https://winscp.net/eng/index.php](https://winscp.net/eng/index.php){target=blank}
 
 

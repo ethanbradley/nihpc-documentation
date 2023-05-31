@@ -4,24 +4,24 @@ Below we will list the resources available.
 
 ## Compute
 
-- 84 x 128 core Dell PowerEdge R6525 compute nodes with AMD EPYC 7702 dual 64-Core Processors (786GB RAM).
-- 4 High memory nodes (2TB RAM).
-- 32 x NVIDIA Tesla v100 GPUs.
-- 16 x NVIDIA Tesla A100 GPUs
+- 96 x 128 core Dell PowerEdge R6525 compute nodes with AMD EPYC 7702 dual 64-Core Processors (786GB RAM).
+- 8 High memory nodes (2TB RAM).
+- 32 x NVIDIA Tesla v100 GPUs in 4 nodes.
+- 16 x NVIDIA Tesla A100 GPUs in 4 nodes.
 - 2PB of lustre parallel file system for scratch storage.
 
 ## Storage
 
 There are 4 pools of storage on Kelvin2 :
 
-### <ins>Home<ins>
+### <ins>Home</ins>
         
     /users/"username"
- - Default place that users login to.
+- Default place that users login to.
 - 50GB/100K file quota.
 - No automated file deletion - therefore good to store smaller/compressed longer term data.
 
-### <ins>Scratch<ins>
+### <ins>Scratch</ins>
         
     /mnt/scratch2/users/"username"
  - Large, shared storage area
@@ -30,14 +30,14 @@ There are 4 pools of storage on Kelvin2 :
  - Mainly used for storing data that is neccassary to running jobs and storing their output.
  - Once results are outputed, permanent data should be moved to longer term storage ( Home/McClayRDS ).
 
-### <ins>Temp<ins>
+### <ins>Temp</ins>
 
     /tmp
 
 - Local scratch disk on nodes.
 - Data will be automatically deleted when session ends.
 
-### <ins>McClayRDS<ins>
+### <ins>McClayRDS</ins>
 
     /mnt/autofs/mcclayrds-projects
     
