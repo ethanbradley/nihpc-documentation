@@ -125,7 +125,7 @@ For more than 50 years, Ansys software has enabled innovators across industries 
 
 Ansys is a licensed software. In order to use it, users have to be registered in the license server. If you are not already included in the license server, you must contact the person in charge of it:
 
-QUB: [Marco Geron](mailto:m.geron@qub.ac.uk) </br>
+QUB: TBA </br>
 Ulster: TBA
 
 When the module is loaded, license parameters for QUB are loaded by default. Ulster users should change these license parameters in their batch script or interactive session. Contact the person in charge of the license for details.
