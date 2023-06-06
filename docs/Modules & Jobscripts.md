@@ -36,7 +36,7 @@ Below we will outline how to create a jobscript.<br />
 
 ### First steps
 
-To create a jobscript we first must open a text editor, in this example we will us VI.<br />
+To create a jobscript we first must open a text editor, in this example we will us VI. (https://www.tutorialspoint.com/unix/unix-vi-editor.htm) <br />
 
 To begin, give your jobscript a name:
 
