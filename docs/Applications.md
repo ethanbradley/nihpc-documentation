@@ -70,8 +70,6 @@ At the end of the parallel computations, the allocated parpool within Matlab can
 delete(gcp('nocreate'))
 ```
 
-### ***Running Matlab interactively: srun + GPUs***
-
 ### ***Running Matlab with GUI directly on a compute node***
 
 First, get a compute node and launch vnc server from the node, for example:
@@ -110,15 +108,90 @@ This time matlab GUI will be opened as shown in the figure below. For a better e
 
 ![Image title](assets/TurboVNC_Matlab.jpg){ width="800" }
 
+### ***Running Matlab with the use of GPUs***
+
+First, get a GPU node and launch vnc server from the node, for example:
+
+``` bash
+srun -p k2-gpu -N 1 -n 4 --gres gpu:1g.10gb:1 --time=3:00:00 --mem=20G --pty bash
+vncserver
+```
+
+Then, similarly as done in the previous section, (1) open a local terminal and launch a forward tunnel to the GPU node; (2) use a VNC application to connect to the tunnel; (3) load and launch the Matlab software.
+
+To test the use of the GPU device within Matlab code, copy and paste the script file `matlab_gpu_example.m` below.
+
+``` matlab title="matlab_gpu_example.m" linenums="1"
+% The Mandelbrot algorithm iterates over a grid of real and imaginary parts.
+% The following code defines the number of iterations, grid size, and grid limits.
+maxIterations = 500;
+gridSize = 1000;
+xlim = [-0.748766713922161, -0.748766707771757];
+ylim = [ 0.123640844894862,  0.123640851045266];
+
+% Use the gpuArray function to transfer data to the GPU and create a gpuArray object.
+x = gpuArray.linspace(xlim(1), xlim(2), gridSize);
+y = gpuArray.linspace(ylim(1), ylim(2), gridSize);
+
+% Many Matlab functions support gpuArrays and run directly on the GPU (e.g., meshgrid)
+% The function "ones", below, create an array of ones directly on the GPU
+[xGrid,yGrid] = meshgrid(x,y);
+z0 = xGrid + 1i*yGrid;
+count = ones(size(z0), 'gpuArray');
+
+% The code below implements the Mandelbrot algorithm, fully running on the GPU
+z = z0;
+for n = 0:maxIterations
+    z = z.*z + z0;
+    inside = abs(z) <= 2;
+    count = count + inside;
+end
+count = log(count);
+
+% Plot the results
+imagesc(x, y, count);
+colormap([jet(); flipud(jet()); 0 0 0]);
+axis off;
+```
+
+The following results should appear when you run this script in the GUI that is running on the cluster's GPU, as per below. As shown in the Matlab command window, the output of calling the function `whos` reveal the many variables (gpuArray objects) that are still allocated on the GPU.
+
+![Image title](assets/cluster_gpu_matlab.png){ width="1000" }
+
 ### ***Running Matlab in background: sbatch***
 
-Finally, the most convenient way is to run Matlab in background, particularly for analysis where calculations take days. Several examples are discussed next.
+Finally, the most convenient way to use the cluster resources may be to perform Matlab calculations in background, using `sbatch` functionality instead of `srun`. This is critical, mainly for analysis where calculations may take several hours or days. To demonstrate this, simply copy and paste the following "sbatch" script, called `gpu_example.sh`, as an example which relies on the same script prepared above to calculate the Mandelbrot solution.
+
+``` bash title="gpu_example.sh" linenums="1"
+#!/bin/bash
+
+#SBATCH --job-name=test
+#SBATCH -N 1
+#SBATCH -n 4
+#SBATCH --mem=20G
+#SBATCH --time=00:10:00
+#SBATCH --partition=k2-gpu
+#SBATCH --gres=gpu:1g.10gb:1
+#SBATCH --output=test_%j.log
+
+module load matlab/R2022a
+
+# Ulster University (UU) users must use UU's licence by declaring
+# (removing comments) these environmet variables:
+#export MLM_LICENSE_FILE=27000@193.61.190.229
+#export LM_LICENSE_FILE=27000@193.61.190.229
+
+matlab -nosplash -nodisplay -r "matlab_gpu_example; saveas(gcf, 'Mandelbrot'); exit;"
+```
+In the code above, line #19, Matlab is called in "nosplash" and "nodisplay" mode to execute the `matlab_gpu_example.m` script. Besides, note that the code will run in background, i.e., without display, therefore it must use some Matlab function like `saveas`, as shown in the code, which saves the graphical output. As a result, the Matlab file that must be listed now in the working directory, `Mandelbrot.fig`, should contain the visual results. Finally, to run this "sbatch" script, run the following command in your terminal.
+
+``` bash
+sbatch gpu_example.sh
+```
 
 ## **Python with Anaconda**
 
-## Python with Anaconda
-
-## Ansys
+## **Ansys**
 
 For more than 50 years, Ansys software has enabled innovators across industries to push boundaries with the predictive power of simulation. From sustainable transportation and advanced semiconductors, to satellite systems and life-saving medical devices, the next great leaps in human advancement will be powered by Ansys.
 [https://www.ansys.com](https://www.ansys.com)
@@ -132,13 +205,13 @@ When the module is loaded, license parameters for QUB are loaded by default. Uls
 User manual for Ansys is not publicly available, and only licensed users can access to it. To access to this material, register yourself in the Ansys web seite. </br>
 [https://customercenter.ansys.com](https://customercenter.ansys.com){target=_blank}
 
-### Load Ansys module
+### ***Load Ansys module***
 
 The latest installed version on Kelvin-2 is the 2023R1. To load Ansys:
 
     $ module load apps/ansys/2023.1
 
-### Ansys Fluent batch script example
+### ***Ansys Fluent batch script example***
 
     #!/bin/bash
 
@@ -170,7 +243,7 @@ The latest installed version on Kelvin-2 is the 2023R1. To load Ansys:
     #Run Ansys Fluent.
     fluent 3ddp -g -t$SLURM_NTASKS -pinfiniband -mpi=openmpi -cnf=hosts.$SLURM_JOB_ID.txt -i my_fluent_input > my_fluent_output.res
 
-## Paraview
+## **Paraview**
 
 A recommended method to run Paraview on Kelvin-2, it is to start a PV server on Kelvin-2, and to use your local machine to visualize the graphical interface. In this case, you need an installation of Paraview in your local machine as well.
 
@@ -225,7 +298,7 @@ Once you created the client the first time, you can recover it the next time you
 
 ![Paraview Frontend](assets/Paraview_fronted.png)
 
-## Compilers
+## **Compilers**
 
 Kelvin-2 has a large set of compilers and libraries for those users who compile their own self-programmed applications.
 We hardly recommend avoiding the system compilers, and to use those ones which are installed as modules. Modules for compilers as flagged in general as
@@ -239,7 +312,7 @@ And libraries
 where <compiler> states the compiler and version that it was compiled with, and in some cases, other libraries as dependencies.
 If you are going to use a precompiled library, be sure to use for your application the same compiler and version that the particular library was compiled with.
 
-### Compilers available on Kelvin-2
+### ***Compilers available on Kelvin-2***
 
 On Kelvin-2, for usual programming languages as C, C++, or Fortran, we recommend using the GNU compiling suite. It is well tested, and it is currently the fastest for AMD systems. It is also a universal compiling suite, so any code will compile with it.
 
@@ -272,7 +345,7 @@ For compatibility, we recommend using the A100 GPUs to compile. Further details 
 
     srun --pty --partition=k2-gpu --ntasks=1 --mem-per-cpu=4G --gres gpu:a100:1 bash
 
-### Compiling parallel applications
+### ***Compiling parallel applications***
 
 - OpenMP
 
@@ -362,7 +435,7 @@ For compatibility, we recommend using the A100 GPUs to compile. Further details 
  More information about OpenACC, including pdf user guides can be found in the web site </br>
  [https://www.openacc.org](https://www.openacc.org){target=_blank}
 
-### Compiling applications that use GPUs
+### ***Compiling applications that use GPUs***
 
 To compile a program designed to work on the Graphical Processing Units of Kelvin-2, it is essential that it is compiled in a GPU node, so the queue "k2-gpu" must be allocated.
 For backwards compatibility, the program must be compiled in the latest model of GPU present in the machine, in our case, the Nvidia A100 GPUs.
