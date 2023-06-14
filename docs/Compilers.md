@@ -1,4 +1,4 @@
-# **Compilers**
+# Compilers
 
 Kelvin-2 has a large set of compilers and libraries for those users who compile their own self-programmed applications.
 We hardly recommend avoiding the system compilers, and to use those ones which are installed as modules. Modules for compilers as flagged in general as
