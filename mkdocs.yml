@@ -6,6 +6,7 @@ nav:
     - 'Modules & Jobscripts.md'
     - 'Job Submission.md'
     - 'Applications.md'
+    - 'Compilers.md'
 theme:
   name: material
   features:
