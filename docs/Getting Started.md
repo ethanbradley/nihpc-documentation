@@ -6,10 +6,10 @@ Here we will detail the first steps on accessing our HPC cluster, Kelvin2.
 
 To gain an account to access Kelvin2, please fill the form found here : 
 
-[https://www.ni-hpc.ac.uk/Access/](https://www.ni-hpc.ac.uk/Access/)
+[https://www.ni-hpc.ac.uk/Access/](https://www.ni-hpc.ac.uk/Access/){target=blank}
 
 Please allow 48 hours for your account to be created.
-Users will be emailed confirmation when their account has been proccessed.
+Users will be emailed confirmation when their account has been processed.
 <br />
 
 ## Credentials
@@ -60,7 +60,9 @@ Login to Kelvin2 and paste the above output into the end of the file:
 
      ~/.ssh/authorized_keys
 
-Note: if you are away from the QUB campus and hence do not have access to Kelvin2,  send the public key via a method found [here](https://www.ni-hpc.ac.uk/contact/), whereupon an administrator will add it for you.
+Note: if you are away from the QUB campus and hence do not have access to Kelvin2,  send the public key via a method found 
+[here](https://www.ni-hpc.ac.uk/contact/){target=blank}, 
+whereupon an administrator will add it for you.
 
 -	Login using SSH
 
@@ -87,7 +89,9 @@ Login to Kelvin2 and paste the above output into the end of the file:
 
      ~/.ssh/authorized_keys
  
-Note: if you are away from the QUB campus and hence do not have access to Kelvin2,  send the public key via a method found [here](https://www.ni-hpc.ac.uk/contact/), whereupon an administrator will add it for you.
+Note: if you are away from the QUB campus and hence do not have access to Kelvin2,  send the public key via a method found 
+[here](https://www.ni-hpc.ac.uk/contact/){target=blank}, 
+whereupon an administrator will add it for you.
 
 -	Login using SSH
 

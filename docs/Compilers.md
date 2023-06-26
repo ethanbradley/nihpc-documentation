@@ -231,7 +231,7 @@ Compile and execute
 
      -acc
 
- This option implies an inteligent check-up of the hardware at the time of the execution.
+ This option implies an intelligent check-up of the hardware at the time of the execution.
  The compiler will use the available hardware resources at that time to optimize the acceleration of the marked regions of the code as "OpenACC",
  multiple-CPUs or GPUs will be allocated by the compiler for the execution, the user does not need to specify the resources at the time of the execution.
 
@@ -282,8 +282,6 @@ For backwards compatibility, the program must be compiled in the latest model of
 So, when allocating the interactive session to carry out the compilation, the resource A100 should be allocated with the flag
 
     --gres gpu:a100:1
-
-See the specific [section](Job Submission.md#advanced-working-with-gpus-on-kelvin-2) to work with GPUs on Kelvin-2 for more information about how to allocate the resources.
 
 During the last years, the popularity of the specific GPU-focused programming languages, such as CUDA, has decreased.
 This is due to the publicly-available libraries have become more and more complete, and practically any mathematical operation that can benefit of the acceleration advantages of a GPU is present on those libraries.

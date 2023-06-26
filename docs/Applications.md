@@ -297,3 +297,54 @@ Connect<br>
 Once you created the client the first time, you can recover it the next time you open Paraview, you do not need to create it again, and you can connect directly in the step 3.
 
 ![Paraview Frontend](assets/Paraview_fronted.png)
+
+## **Containers. Singularity.**
+
+In Kelvin-2, we use singularity to run containers.
+It has as main advantage, that it does not require root privileges to install the containers. Because of that, it is the mostly used container in HPC systems.
+
+To activate singularity, one of the modules should be loaded
+
+    apps/singularity/3.10.0
+    apps/singularity/3.4.2
+
+More detail about using singularity and containers on Kelvin-2 can be found in the 
+[online seminar](https://gitlab.qub.ac.uk/qub_hpc/applications/-/tree/master/Singularity%20Seminar){target=blank}
+
+### ***Running a Docker image on Singularity***
+
+You need the docker image file. </br>
+`myimage.img`</br>
+As a tarball </br>
+`mytarball.tar`
+
+Go to a compute node
+
+    $ srun --pty --partition=k2-hipri --ntasks=1 --mem-per-cpu=2G bash
+
+Load the module
+
+    $ module load apps/singularity/3.4.2
+
+Convert the tarball to singularity:</br>
+Firstly go to the directory where to tarball is located</br>
+
+    $ cd /path/to/tarball
+
+Convert the tarball:
+
+    $ singularity build --sandbox mytarball docker-archive://mytarball.tar
+
+Execute the image
+
+    $ singularity shell myimage
+    $ singularity exec myimage mycommand
+    $ singularity run myimage
+
+
+### ***Create the tarball from a Docker image***
+
+These steps should be done in your local computer, where you have docker. Once you create the tarball, you have to copy it to Kelvin-2 and create the singularity image in Kelvin-2.
+
+    <my_local_machine>$ docker save my_docker_image -o mytarball.tar
+
