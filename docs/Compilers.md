@@ -45,6 +45,28 @@ For compatibility, we recommend using the A100 GPUs to compile. Further details 
 
     srun --pty --partition=k2-gpu --ntasks=1 --mem-per-cpu=4G --gres gpu:a100:1 bash
 
+### ***Example of compilation***
+
+hello_world.c
+
+    // Program to print Hello World using C language
+
+    #include <stdio.h>
+    #include <stdlib.h>
+    
+    void main(void)
+    {
+        printf("Hello World... \n");
+    }
+
+Compile and execute
+
+    [<user>@login1 [kelvin2] ~]$ srun --pty --partition=k2-hipri --ntasks=1 --mem-per-cpu=100M bash
+    [<user>@node162 [kelvin2] ~]$ module load compilers/gcc/9.3.0
+    [<user>@node162 [kelvin2] ~]$ gcc -O2 -o hello_world.x hello_world.c
+    [<user>@node162 [kelvin2] ~]$ ./hello_world.x
+    Hello World...
+
 ## ***Compiling parallel applications***
 
 - OpenMP
@@ -52,9 +74,47 @@ For compatibility, we recommend using the A100 GPUs to compile. Further details 
  All the compilers have integrated the libraries to execute in parallel using the Open Multi Processor protocol.
  In the case of the GNU compiler, the OpenMP protocol is activated just adding the flag
 
-     -fopemmp
+     -fopenmp
 
  to the compilation command.
+
+hello_world_omp.c
+
+    // OpenMP program to print Hello World
+    // using C language
+     
+    // OpenMP header
+    #include <omp.h>
+    #include <stdio.h>
+    #include <stdlib.h>
+ 
+    int main(int argc, char* argv[])
+    {
+     
+        // Beginning of parallel region
+        #pragma omp parallel
+        {
+ 
+            printf("Hello World... from thread = %d\n",
+                   omp_get_thread_num());
+        }
+        // Ending of parallel region
+    }
+
+Compile and execute
+
+    [<user>@login1 [kelvin2] ~]$ srun --pty --partition=k2-hipri --ntasks=8 --mem-per-cpu=100M bash
+    [<user>@node162 [kelvin2] ~]$ module load compilers/gcc/9.3.0
+    [<user>@node162 [kelvin2] ~]$ gcc -O2 -fopenmp -o hello_world_omp.x hello_world_omp.c
+    [<user>@node162 [kelvin2] ~]$ ./hello_world_omp.x
+    Hello World... from thread = 3
+    Hello World... from thread = 2
+    Hello World... from thread = 6
+    Hello World... from thread = 7
+    Hello World... from thread = 4
+    Hello World... from thread = 5
+    Hello World... from thread = 0
+    Hello World... from thread = 1
 
 - MPI
 
@@ -118,6 +178,52 @@ For compatibility, we recommend using the A100 GPUs to compile. Further details 
 
  and compile using the commands "mpicc", "mpicxx", "mpifortran".
 
+ hello_world_mpi.c
+
+    #include <mpi.h>
+    #include <stdio.h>
+
+    int main(int argc, char** argv) {
+        // Initialize the MPI environment
+        MPI_Init(NULL, NULL);
+
+        // Get the number of processes
+        int world_size;
+        MPI_Comm_size(MPI_COMM_WORLD, &world_size);
+
+        // Get the rank of the process
+        int world_rank;
+        MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
+
+        // Get the name of the processor
+        char processor_name[MPI_MAX_PROCESSOR_NAME];
+        int name_len;
+        MPI_Get_processor_name(processor_name, &name_len);
+
+        // Print off a hello world message
+        printf("Hello world from processor %s, rank %d out of %d processors\n",
+               processor_name, world_rank, world_size);
+
+        // Finalize the MPI environment.
+        MPI_Finalize();
+    }
+
+Compile and execute
+
+    [<user>@login1 [kelvin2] ~]$ srun --pty --partition=k2-hipri --ntasks=8 --mem-per-cpu=100M bash
+    [<user>@node162 [kelvin2] ~]$ module load compilers/gcc/9.3.0
+    [<user>@node162 [kelvin2] ~]$ module load mpi/openmpi/4.0.4/gcc-9.3.0+ucx-1.8.0
+    [<user>@node162 [kelvin2] ~]$ mpicc -O2 -o hello_world_mpi.x hello_world_mpi.c
+    [<user>@node162 [kelvin2] ~]$ mpirun -np 8 ./hello_world_mpi.x
+    Hello world from processor node162.pri.kelvin2.alces.network, rank 0 out of 8 processors
+    Hello world from processor node162.pri.kelvin2.alces.network, rank 4 out of 8 processors
+    Hello world from processor node162.pri.kelvin2.alces.network, rank 5 out of 8 processors
+    Hello world from processor node162.pri.kelvin2.alces.network, rank 1 out of 8 processors
+    Hello world from processor node162.pri.kelvin2.alces.network, rank 3 out of 8 processors
+    Hello world from processor node162.pri.kelvin2.alces.network, rank 6 out of 8 processors
+    Hello world from processor node162.pri.kelvin2.alces.network, rank 7 out of 8 processors
+    Hello world from processor node162.pri.kelvin2.alces.network, rank 2 out of 8 processors
+
 - OpenACC
 
  Open accelerator is a feature included in the Nvidia compiler.
@@ -134,6 +240,40 @@ For compatibility, we recommend using the A100 GPUs to compile. Further details 
 
  More information about OpenACC, including pdf user guides can be found in the web site </br>
  [https://www.openacc.org](https://www.openacc.org){target=_blank}
+
+ hello_world_openacc.c
+
+    #include <stdio.h>
+    #ifdef _OPENACC
+    #include <openacc.h>
+    #endif
+
+    int main(void) {
+    #ifdef _OPENACC
+        acc_device_t devtype;
+    #endif
+
+        printf("Hello world from OpenACC\n");
+    #ifdef _OPENACC
+        devtype = acc_get_device_type();
+        printf("Number of available OpenACC devices: %d\n", acc_get_num_devices(devtype));
+        printf("Type of available OpenACC devices: %d\n", devtype);
+    #else
+        printf("Code compiled without OpenACC\n");
+    #endif
+
+        return 0;
+    }
+
+Compile and execute
+
+    [<user>@login1 [kelvin2] ~]$ srun --pty --partition=k2-gpu --ntasks=1 --mem-per-cpu=1G --gres gpu:a100:1 bash
+    [<user>@gpu111 [kelvin2] ~]$ module load nvhpc/22.7
+    [<user>@gpu111 [kelvin2] ~]$ nvc -O2 -acc -o hello_world_openacc.x hello_world_openacc.c
+    [<user>@gpu111 [kelvin2] ~]$ ./hello_world_openacc.x
+    Hello world from OpenACC
+    Number of available OpenACC devices: 1
+    Type of available OpenACC devices: 4
 
 ## ***Compiling applications that use GPUs***
 
