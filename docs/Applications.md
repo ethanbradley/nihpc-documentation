@@ -189,7 +189,112 @@ In the code above, line #19, Matlab is called in "nosplash" and "nodisplay" mode
 sbatch gpu_example.sh
 ```
 
+## **Python**
+Python is a high-level, multi-purpose programming language that support several paradigms such as structural, functional and object-oriented programming, together with garbage collection, in order to support code readability and fast development. With the provision of multiple especialized libraries, Python has become one of the most preferred languages for scientific programming, including machine learning and artificial intelligence as well as bioinformatics among many other applications.
+
+Kelvin2 supports the following modules for Python users:
+``` bash title="Python modules"
+apps/python/2.7.8/gcc-4.8.5
+apps/python3/3.10.0/gcc-4.8.5
+apps/python3/3.10.5/gcc-9.3.0
+apps/python3/3.4.3/gcc-4.8.5
+apps/python3/3.5.2/gcc-4.8.5
+apps/python3/3.6.4/gcc-4.8.5
+apps/python3/3.7.4/gcc-4.8.5
+apps/python3/3.7.9/gcc-10.2.0
+apps/python3/3.8.5/gcc-4.8.5
+```
+
+Notice that above are listed different Python's versions which in turn rely on different versions of the GCC compiler. The selected module must correspond to the tools or analysis pipeline that programmers have in mind, as some analysis and Python libraries may require older or newer versions of the Python/GCC software.
+
+The next code snippet illustrates simply how to load a module and install a package in the default location (gridware folder located in the users' home folder):
+``` bash
+module load apps/python3/3.10.5/gcc-9.3.0
+python3 -m pip install reportseff
+reportseff -u $USER
+```
+
+Note: On internet blogs/forums, users will find the recommendation ```pip install <package name>``` to install a particular tool. In this case, for the same install in Kelvin2 it is recommended to precede the command with "python3 -m" as in the snippet above because by default pip will refer to the Python 2.7 version, which is always available from command line in Kelvin2. That is, always use ```python3 -m pip install <package name>``` to install the package.
+
+In the above example, reportseff is a very usefull tool to monitor the efficient utilization of cluster resources (time, RAM, CPU/GPU) that may be critical for your work, because it helps to optimize your jobs which may translates on significantly lower queue times. For instance, the reportseff's outcome below shows some job statistics (greed/red colour codes highlight good/poor resources utilization) for selected jobs.
+
+![Image title](assets/reportseff.png){ width="500" }
+
+This approach, using directly Python modules and installing with pip (Python's PyPI), is mainly recommended for simpler or only-one-time analysis, or tests. Particularly, it has two main drawbacks which are discussed next together with recommendations:
+
+1. It uses the home folder quota (~50 GB hard disk + 100,000 files limit)<br>
+To sort this out, users must declare/modify the environment variables "PATH" and "PYTHONPATH". For example,
+``` bash
+mkdir /mnt/scratch2/users/$USER/gridware
+export PATH=/mnt/scratch2/users/$USER/gridware/bin/:$PATH
+export PYTHONPATH=/mnt/scratch2/users/$USER/gridware/site-packages/:$PYTHONPATH
+```
+creates and uses the folder "gridware" in users' scratch folder, so the pip install will be redirected to the scratch instead of home folder.<br>
+2. Some Python's tools will need also to install libraries in the default locations, e.g., /user/local<br>
+The issue is that users do not have write permission in Kelvin2 system paths. In this case, as well as in the case that users need to install their own version of Python or other supporting libraries, it is strongly recommended to use Anaconda environments as discussed in the next section.
+
+## **Anaconda**
+
+Anaconda is a software that allows to manage environments to install local libraries and software, particularly R and Python programming languages, for scientific computing. Thus, greatly easing software management and reducing possible incompatibilities among different tools, libraries or software versions. Kelvin2 offers to users the following modules:
+
+``` bash title="Anaconda modules"
+apps/anaconda/2.5.0/bin
+apps/anaconda3/2021.05/bin
+apps/anaconda3/2022.10/bin
+apps/anaconda3/5.2.0/bin
+```
+
 ## **Python with Anaconda**
+
+Similar as with the use of Python modules above, it is recommended that users redirect the default installation paths to your scratch folder to save the quota limited resources. For instance, this can be done by modifying the environment variables "CONDA_PKGS_DIRS" and "CONDA_ENVS_PATH":
+
+``` bash
+mkdir /mnt/scratch2/users/$USER/conda
+export CONDA_PKGS_DIRS=/mnt/scratch2/users/$USER/conda/pkgs
+export CONDA_ENVS_PATH=/mnt/scratch2/users/$USER/conda/envs
+```
+
+In the examples below, it is very critical to select the hardware correctly (CPU or GPU) before doing the installation. Therefore, before installing the needed tools, use ```srun``` as shown below to select the compute node with the convenient hardware, i.e., correspondingly in any of the CPU/GPU  partitions available in Kelvin2.
+
+For example, failing to select a compute node with GPU device to install the Python's package may cause that installed tools do not recognize the GPU device on runtime, therefore your program may crash or, worse, run in the CPU by default giving a false sense of security. The second case is very critical because your jobs will not only may last significantly longer to perform the same computations, they will also waste GPU resources as they will run only using the CPU. At the same time, other users will be unable to use the allocated GPU device(s).
+
+### ***Example 1: Installing Pytorch and Ray tune for deep learning models optimization***
+
+In this example, Pytorch is installed together with Raytune. The latter is a tool used for deep learning models optimizations as it help with the evaluation and selection of model hyperparameters (e.g., number of layers, neurons per layer, selection between different transfer or optimization functions, etc.)
+
+``` bash title="Pytorch-Raytune install" linenums="1"
+srun -p k2-gpu -N 1 -n 1 --gres gpu:1g.10gb:1 --time=3:00:00 --mem=20G --pty bash
+module load apps/anaconda3/2021.05/bin
+module load libs/nvidia-cuda/11.7.0/bin
+conda create --name py39torchRayA100 python=3.9
+source activate py39torchRayA100
+(py39torchRayA100) conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia
+(py39torchRayA100) python3
+(py39torchRayA100) conda install pytorch-lightning -c conda-forge
+(py39torchRayA100) conda install -c conda-forge "ray-air"
+(py39torchRayA100) conda deactivate
+```
+
+Line 1 above shows the use of GPU slice partitions. As currently there are available 28 slices in Kelvin2, this partition is much less busy than the others and at the same time will allow you to install the software in the A100 GPU devices, which will guarantee backward compatibility with GPU devices.
+
+Lines 2-5 setup the environment variables, create an Anaconda environment and install Python version 3.9 and activate it. This Python version is strictly required here as Raytune installation may crash with newer versions than 3.10.
+
+The following lines 6-10 are needed to install the required tools, particularly, in line 9 Raytune is installed. The package "ray-air" contains most of the provided functionality by Raytune (Data, Train, Tune, Serve, etc.).
+
+### ***Example 2: Installing tensorflow-gpu and Raytune***
+
+Similarly, for installing tensorflow-gpu and Raytune, follow these instructions:
+
+``` bash title="Tensorflow-Raytune install" linenums="1"
+srun -p k2-gpu -N 1 -n 1 --gres gpu:1g.10gb:1 --time=3:00:00 --mem=20G --pty bash
+module load apps/anaconda3/2021.05/bin
+module load libs/nvidia-cuda/11.7.0/bin
+conda create --name tensorflowRayA100 python=3.9
+source activate tensorflowRayA100
+(tensorflowRayA100) conda install -c anaconda tensorflow-gpu
+(tensorflowRayA100) conda install -c conda-forge "ray-air"
+(tensorflowRayA100) conda deactivate
+```
 
 ## **Ansys**
 
