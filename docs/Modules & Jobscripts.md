@@ -2,25 +2,25 @@
 Kelvin2 has a large repository of Software installed directly on the system.<br />
 There are multiple versions of different software for users to load into their environment and make use of when running their jobs.<br />
 
-### <ins>Module avail<ins><br />
+### Module avail<br />
 
 The `module avail` command will show the list of applications that are currently installed on the central repository.
 
 ![module avail](assets/module_avail.PNG)
 
-### <ins>Module load<ins><br />
+### Module load<br />
 
 The `module load` command will load the selected module, including its binaries/libraries into the users current environment.
 
 ![module load](assets/module_load.PNG)
 
-### <ins>Module list<ins><br />
+### Module list<br />
 
 The `module list` command will show the currently loaded modules in the users environment.
 
 ![module list](assets/module_list.PNG)
 
-### <ins>Other module commands<ins><br />
+### Other module commands<br />
 
 - `module unload <module>` - Removes the module from the current environment<br />
 - `module display <module>` -  Shows information about the software
