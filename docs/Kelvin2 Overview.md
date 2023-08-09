@@ -14,14 +14,14 @@ Below we will list the resources available.
 
 There are 4 pools of storage on Kelvin2 :
 
-### <ins>Home</ins>
+### Home
         
     /users/"username"
 - Default place that users login to.
 - 50GB/100K file quota.
 - No automated file deletion - therefore good to store smaller/compressed longer term data.
 
-### <ins>Scratch</ins>
+### Scratch
         
     /mnt/scratch2/users/"username"
  - Large, shared storage area
@@ -30,14 +30,14 @@ There are 4 pools of storage on Kelvin2 :
  - Mainly used for storing data that is neccassary to running jobs and storing their output.
  - Once results are output, permanent data should be moved to longer term storage ( Home/McClayRDS ).
 
-### <ins>Temp</ins>
+### Temp
 
     /tmp
 
 - Local scratch disk on nodes.
 - Data will be automatically deleted when session ends.
 
-### <ins>McClayRDS</ins>
+### McClayRDS
 
     /mnt/autofs/mcclayrds-projects
     
