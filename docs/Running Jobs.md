@@ -134,7 +134,7 @@ The `module avail` command will show the list of applications that are currently
   apps/annovar/20160201/noarch
   apps/bamtools/2.3.0/gcc-4.8.5
   ...
-  ```
+```
 
 Press `space` to navigate through the list one page at a time and when done press `q` to exit.
 
