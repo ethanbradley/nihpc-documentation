@@ -7,8 +7,9 @@ Complete the application form [on our website](https://www.ni-hpc.ac.uk/Access/)
 ## Connecting to Kelvin2 using the terminal
 Connecting to Kelvin2 is done via Secure Shell Protocol (SSH) using either the terminal (command prompt) that comes preinstalled with your operating system or a separate SSH client which offers additional features, such as [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) or [MobaXterm](https://mobaxterm.mobatek.net/). This section shows you how to connect to Kelvin2 using the terminal.
 
->[!NOTE]
-> Older versions of Windows, pre Windows 10 (Autumn 2018), do not have OpenSSH installed as standard for use in their Command Prompt or PowerShell. In this case a separate SSH client such as PuTTY or MobaXterm is recommended.
+!!! note
+
+    Older versions of Windows, pre Windows 10 (Autumn 2018), do not have OpenSSH installed as standard for use in their Command Prompt or PowerShell. In this case a separate SSH client such as PuTTY or MobaXterm is recommended.
 
 There are two ways to connect to Kelvin2 depending on whether you are inside or outside the QUB network.
 
@@ -21,8 +22,9 @@ If you are a QUB user **and** you are connecting from inside the QUB network (ei
 - Enter your password when requested. **This is the same password associated with your QUB Active Directory.**
 - If you have enabled multi-factor authentication (MFA), enter the verification code provided by your authenticator app when requested.
 
-> [!IMPORTANT]
->It will soon become mandatory to have MFA enabled on your Kelvin2 account. Failure to activate multi-factor authentication by 31st December 2023 may result in your account being disabled. To set up MFA, follow the instructions provided [further down this page](multi-factor-authentication-(mfa)-on-kelvin2).
+!!! warning
+
+    It will soon become mandatory to have MFA enabled on your Kelvin2 account. Failure to activate multi-factor authentication by 31st December 2023 may result in your account being disabled. To set up MFA, follow the instructions provided [further down this page](multi-factor-authentication-(mfa)-on-kelvin2).
 
 ### Access from outside the QUB network
 
@@ -37,56 +39,47 @@ Steps 1 and 2 will only need to be completed once.
 
 The procedure for generating an SSH key pair on your terminal varies depending on your operating system. Expand the relevant option below:
 
-<details>
-<summary><b>Mac/Linux</b></summary>
+??? note "Mac/Linux"
 
-Create the SSH key pair on your machine by entering the following command into your terminal:
-```bash
-ssh-keygen -t rsa –f ~/.ssh/my-kelvin-key
-```
-> [!IMPORTANT]
-> All users MUST set a passphrase when prompted.
+    Create the SSH key pair on your machine by entering the following command into your terminal:
+    ```bash
+    ssh-keygen -t rsa –f ~/.ssh/my-kelvin-key
+    ```
+    **All users MUST set a passphrase when prompted.**
 
-This will create the SSH key pair in your .ssh directory. This key pair consists of a private key `my-kelvin-key` and a public key `my-kelvin-key.pub`
+    This will create the SSH key pair in your .ssh directory. This key pair consists of a private key `my-kelvin-key` and a public key `my-kelvin-key.pub`
 
-It is the contents of the **public** key that you will want to transfer to Kelvin2. To display the contents of this file in the terminal, enter the following command:
-
+    It is the contents of the **public** key that you will want to transfer to Kelvin2. To display the contents of this file in the terminal, enter the following command:
+    ```bash
     cat ~/.ssh/my-kelvin-key.pub
+    ```
 
-> [!WARNING]
-> The private key should be kept safe and should not be shared with anybody.
-</details>
+    **The private key should be kept safe and should not be shared with anybody.**
 
-<details>
-<summary><b>Windows 10 (Autumn 2018) or later</b></summary>
+??? note "Windows 10 (Autumn 2018) or later"
 
-Create the SSH key pair on your machine by entering the following command into your terminal:
-```bash
-ssh-keygen
-```
-Call the key `my-kelvin-key` and optionally specify the full path that you want to save it to. The default location, if none is specified, is your home directory, e.g. `C:\Users\<username>\my-kelvin-key`.
+    Create the SSH key pair on your machine by entering the following command into your terminal:
+    ```bash
+    ssh-keygen
+    ```
+    Call the key `my-kelvin-key` and optionally specify the full path that you want to save it to. The default location, if none is specified, is your home directory, e.g. `C:\Users\<username>\my-kelvin-key`.
 
-> [!IMPORTANT]
-> All users MUST set a passphrase when prompted.
+    **All users MUST set a passphrase when prompted.**
 
-This will create the SSH key pair in the directory you have specified. This key pair consists of a private key `my-kelvin-key` and a public key `my-kelvin-key.pub`
+    This will create the SSH key pair in the directory you have specified. This key pair consists of a private key `my-kelvin-key` and a public key `my-kelvin-key.pub`
 
-It is the contents of the **public** key that you will want to transfer to Kelvin2. To display the contents of this file in the terminal, enter the following command: 
+    It is the contents of the **public** key that you will want to transfer to Kelvin2. To display the contents of this file in the terminal, enter the following command: 
 
+    ```bash
     type my-kelvin-key.pub
+    ```
+    **The private key should be kept safe and should not be shared with anybody.**
 
-> [!WARNING]
-> The private key should be kept safe and should not be shared with anybody.
-</details>
+??? note "Older versions of Windows"
 
-<details>
-<summary><b>Older versions of Windows</b></summary>
-
-Older versions of Windows do not have a built in SSH client and you will have to install one separately. Two popular choices are 
-[PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) 
-and [MobaXterm](https://mobaxterm.mobatek.net/) which have graphical tools to generate SSH keys called PuTTYgen and MobaKeyGen, respectively. 
-
-</details>
+    Older versions of Windows do not have a built in SSH client and you will have to install one separately. Two popular choices are 
+    [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) 
+    and [MobaXterm](https://mobaxterm.mobatek.net/) which have graphical tools to generate SSH keys called PuTTYgen and MobaKeyGen, respectively.
 
 #### 2. Copy the Public SSH Key to Kelvin2.
 
@@ -96,14 +89,11 @@ To add your public key from inside the QUB network:
 
 - Log into Kelvin2 using your QUB Active Directory credentials.
 
-- Type the following command into your terminal on Kelvin2 to open the `authorized_keys` file using the vim text editor
-
+- Type the following command into your terminal on Kelvin2 to open the `authorized_keys` file using the vim text editor. 
   ```bash
   vi ~/.ssh/authorized_keys
   ```
-  >[!IMPORTANT]
-  > The public SSH key already listed in the `authorized_keys` file labeled 'Alces Clusterware HPC Cluster Key' should not be modified or deleted. 
-- Once vim has opened, navigate to the end of the file and access "Insert Mode" by pressing Shift+G then Shift+A
+- Once vim has opened, navigate to the end of the file and access "Insert Mode" by pressing Shift+G then Shift+A. The public SSH key already listed in the `authorized_keys` file labeled 'Alces Clusterware HPC Cluster Key' should not be modified or deleted.
 - Press 'Enter' to create a new line
 - On your local computer, copy the contents of `my-kelvin-key.pub` to the clipboard
 - Paste this to the end of your `authorized_keys` file in Kelvin2 by right-clicking in the vim editor
@@ -123,8 +113,9 @@ After this initial set-up process is complete, you can connect to Kelvin2 as fol
 - Enter your passphrase when requested. **This is the passphrase that you set up when creating the SSH key pair.**
 - If you have enabled multi-factor authentication (MFA), enter the verification code provided by your authenticator app when requested.
 
-> [!IMPORTANT]
-> It will soon become mandatory to have MFA enabled on your Kelvin2 account. Failure to activate multi-factor authentication by 30th November 2023 may result in your account being disabled. To set up MFA, follow the instructions provided [in the following section](multi-factor-authentication-(mfa)-on-kelvin2).
+!!! warning
+
+It will soon become mandatory to have MFA enabled on your Kelvin2 account. Failure to activate multi-factor authentication by 30th November 2023 may result in your account being disabled. To set up MFA, follow the instructions provided [in the following section](multi-factor-authentication-(mfa)-on-kelvin2).
 
 ### Multi-Factor Authentication (MFA) on Kelvin2
 
@@ -135,20 +126,24 @@ Users who have enabled MFA will start receiving verification prompts on their co
 - from inside the QUB network on **15th November 2023**
 
 
->[!IMPORTANT]
-> Users are required to enabled MFA on their accounts no later than **30th November 2023** (for connections outside the QUB network) and no later than **31st December 2023** (for connections inside the QUB network). Users who have not enabled MFA by these deadlines will have their accounts disabled.
+!!! warning
+
+    Users are required to enabled MFA on their accounts no later than **30th November 2023** (for connections outside the QUB network) and no later than **31st December 2023** (for connections inside the QUB network). Users who have not enabled MFA by these deadlines will have their accounts disabled.
 
 #### Enabling Multi-Factor Authentication
 
 To enable Multi-Factor Authentication (MFA):
+
   - Log into Kelvin2 and type the following command into your terminal to generate a QR Code and key
     ```bash
     /opt/flight/bin/flight mfa generate
     ```
   - Using your authenticator application, scan the QR code or enter the key
   - Your authenticator should now be generating one-time passwords to access Kelvin2
->[!NOTE]
->If you lose access to your authenticator application and can no longer connect to Kelvin2, [contact us](https://www.ni-hpc.ac.uk/contact/) and an administrator will reset your MFA settings.
+
+!!! info
+
+    If you lose access to your authenticator application and can no longer connect to Kelvin2, [contact us](https://www.ni-hpc.ac.uk/contact/) and an administrator will reset your MFA settings.
 
 
 ### Potential warning when reconnecting to Kelvin2
@@ -181,8 +176,7 @@ kelvin2.qub.ac.uk,143.117.27.22 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAy
 
 For Windows users, the recommended way to connect to Kelvin-2 is via a SSH client. The two most popular options are MobaXterm and PuTTY.
 
-<details>
-<summary>MobaXterm</summary>
+### MobaXterm
 
 [MobaXterm](https://mobaxterm.mobatek.net) is a highly recommended SSH client for Windows. After installing and opening this program, follow these steps to configure the remote session:
 
@@ -213,10 +207,8 @@ For Windows users, the recommended way to connect to Kelvin-2 is via a SSH clien
 
 >[!NOTE]
 >If MFA is enabled, you will be prompted twice for verification when you connect to MobaXterm - once with a pop-up box and then in the terminal.
-</details>
 
-<details>
-<summary> PuTTY </summary>
+### PuTTY
  
 PuTTY can be installed from the Microsoft store, or 
 [downloaded from the web](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
@@ -253,5 +245,3 @@ Now, you can configure your session in PuTTy, following the steps:
     ![PuTTY Auth](assets/PuTTy3.png)
 
 1. Go back to the tab "Session" and save the created session, it will appear in the big box. To connect, select your session from the box, and click on "Open" at the bottom of the window.
-</details>
-
