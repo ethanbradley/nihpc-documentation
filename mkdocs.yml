@@ -4,8 +4,7 @@ nav:
     - 'Kelvin2 Overview.md'
     - 'Connecting to Kelvin2.md'
     - 'Quickstart Guide.md'
-    - 'Modules & Jobscripts.md'
-    - 'Job Submission.md'
+    - 'Running Jobs.md'
     - 'Applications.md'
     - 'Compilers.md'
 theme:
