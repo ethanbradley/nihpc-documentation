@@ -2,10 +2,10 @@
 
 ## Applying for a Kelvin2 account
 
-Complete the application form [on our website](https://www.ni-hpc.ac.uk/Access/) to apply for an account on Kelvin2. Please allow 48 hours for your application to be processed. If your request is successful, you will receive confirmation via email along with your account credentials.
+Complete the application form [on our website](https://www.ni-hpc.ac.uk/Access/){target=_blank} to apply for an account on Kelvin2. Please allow 48 hours for your application to be processed. If your request is successful, you will receive confirmation via email along with your account credentials.
 
 ## Connecting to Kelvin2 using the terminal
-Connecting to Kelvin2 is done via Secure Shell Protocol (SSH) using either the terminal (command prompt) that comes preinstalled with your operating system or a separate SSH client which offers additional features, such as [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) or [MobaXterm](https://mobaxterm.mobatek.net/). This section shows you how to connect to Kelvin2 using the terminal.
+Connecting to Kelvin2 is done via Secure Shell Protocol (SSH) using either the terminal (command prompt) that comes preinstalled with your operating system or a separate SSH client which offers additional features, such as [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html){target=_blank} or [MobaXterm](https://mobaxterm.mobatek.net/){target=_blank}. This section shows you how to connect to Kelvin2 using the terminal.
 
 !!! note
 
@@ -25,7 +25,7 @@ If you are a QUB user **and** you are connecting from inside the QUB network (ei
 
 !!! warning
 
-    It will soon become mandatory to have MFA enabled on your Kelvin2 account. Failure to activate multi-factor authentication by 31st December 2023 may result in your account being disabled. To set up MFA, follow the instructions provided [further down this page](multi-factor-authentication-(mfa)-on-kelvin2).
+    It will soon become mandatory to have MFA enabled on your Kelvin2 account. Failure to activate multi-factor authentication by 31st December 2023 may result in your account being disabled. To set up MFA, follow the instructions provided [further down this page](#multi-factor-authentication-(mfa)-on-kelvin2).
 
 ### Access from outside the QUB network
 
@@ -85,7 +85,7 @@ The procedure for generating an SSH key pair on your terminal varies depending o
 
 **2. Copy the Public SSH Key to Kelvin2**
 
-If you are able to connect to Kelvin2 from inside the QUB network, but want to access from outside the network in future, then you are able to add the public key yourself. If you are outside the QUB network and therefore do not have access to Kelvin2,  [send your public key to us](https://www.ni-hpc.ac.uk/contact/), and an administrator will add it for you.
+If you are able to connect to Kelvin2 from inside the QUB network, but want to access from outside the network in future, then you are able to add the public key yourself. If you are outside the QUB network and therefore do not have access to Kelvin2,  [send your public key to us](https://www.ni-hpc.ac.uk/contact/){target=_blank}, and an administrator will add it for you.
 
 To add your public key from inside the QUB network:
 
@@ -118,7 +118,7 @@ After this initial set-up process is complete, you can connect to Kelvin2 as fol
 
 !!! warning
 
-    It will soon become mandatory to have MFA enabled on your Kelvin2 account. Failure to activate multi-factor authentication by 30th November 2023 may result in your account being disabled. To set up MFA, follow the instructions provided [in the following section](multi-factor-authentication-(mfa)-on-kelvin2).
+    It will soon become mandatory to have MFA enabled on your Kelvin2 account. Failure to activate multi-factor authentication by 30th November 2023 may result in your account being disabled. To set up MFA, follow the instructions provided [in the following section](#multi-factor-authentication-(mfa)-on-kelvin2).
 
 ### Multi-Factor Authentication (MFA) on Kelvin2
 
@@ -147,7 +147,7 @@ To enable Multi-Factor Authentication (MFA):
 
 !!! info
 
-    If you lose access to your authenticator application and can no longer connect to Kelvin2, [contact us](https://www.ni-hpc.ac.uk/contact/) and an administrator will reset your MFA settings.
+    If you lose access to your authenticator application and can no longer connect to Kelvin2, [contact us](https://www.ni-hpc.ac.uk/contact/){target=_blank} and an administrator will reset your MFA settings.
 
 
 ### Warnings when reconnecting to Kelvin2
@@ -215,7 +215,7 @@ For Windows users, the recommended way to connect to Kelvin-2 is via a SSH clien
 ### PuTTY
  
 PuTTY can be installed from the Microsoft store, or 
-[downloaded from the web](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
+[downloaded from the web](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html){target=_blank}.
 
 To use PuTTy as a remote SSH client, the configuration is similar to MobaXterm. To begin, you will need to configure a session:
 
