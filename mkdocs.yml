@@ -3,6 +3,7 @@ nav:
     - 'index.md'
     - 'Kelvin2 Overview.md'
     - 'Connecting to Kelvin2.md'
+    - 'Quickstart Guide.md'
     - 'Getting Started.md'
     - 'Modules & Jobscripts.md'
     - 'Job Submission.md'
