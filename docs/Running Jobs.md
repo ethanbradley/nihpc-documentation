@@ -276,11 +276,12 @@ It is possible to interact with graphical applications on Kelvin2 by launching a
     ```bash
     [<username>@login3 [kelvin2] ~]$ srun -p k2-hipri -N 1 -n 10 --mem-per-cpu=1G --time=1:00:00 --pty bash
     ```
+    
 1. On the compute node, launch a vncserver (TigerVNC) by typing the following into your Kelvin2 terminal:
-
     ```bash
     [<username>@node181 [kelvin2] ~]$ vncserver
     ```
+    
 1. If this is your first time launching a VNC server you will be prompted to set a password. For security reasons, this should be different to your login/SSH password for Kelvin2.
     ```bash
     You will require a password to access your desktops.
@@ -290,6 +291,7 @@ It is possible to interact with graphical applications on Kelvin2 by launching a
     Would you like to enter a view-only password (y/n)? n
     A view-only password is not used
     ```
+    
 1. Once your vncserver is launched you will have information printed to your screen:
     ```bash
     New 'node181.pri.kelvin2.alces.network:1 (<username>)' desktop is node181.pri.kelvin2.alces.network:1
@@ -297,6 +299,7 @@ It is possible to interact with graphical applications on Kelvin2 by launching a
     Starting applications specified in /users/<username>/.vnc/xstartup
     Log file is /users/<username>/.vnc/node181.pri.kelvin2.alces.network:1.log
     ```
+
 1. Take note of the number after the compute node address (e.g. the `1` at the end of `node181.pri.kelvin2.alces.network:1`). This specifies the port number you need when creating your tunnel. Since the number here is `1`, we use port `5901`, if the number `7`, we would use port `5907`.
 
 1. In a separate terminal on your local computer, enter the following command to launch an SSH tunnel. Modify your node name and port numbers as appropriate. Here `5903` specifies the port on your local host and `5901` comes from the port number noted in the previous step. You will have to log in and authenticate using your usual credentials.
