@@ -29,13 +29,14 @@ If you are a QUB user **and** you are connecting from inside the QUB network (ei
 ### Access from outside the QUB network
 
 If you are outside the QUB network you can only connect to Kelvin2 using an SSH key pair. This steps required are as follows:
+
 1. Generate an SSH key pair (and passphrase) on your machine
 1. Copy the public SSH key to Kelvin2.
 1. Connect to Kelvin2 using the SSH key and passphrase
 
 Steps 1 and 2 will only need to be completed once.
 
-#### 1. Generate an SSH key pir
+**1. Generate an SSH Key Pair**
 
 The procedure for generating an SSH key pair on your terminal varies depending on your operating system. Expand the relevant option below:
 
@@ -81,7 +82,7 @@ The procedure for generating an SSH key pair on your terminal varies depending o
     [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) 
     and [MobaXterm](https://mobaxterm.mobatek.net/) which have graphical tools to generate SSH keys called PuTTYgen and MobaKeyGen, respectively.
 
-#### 2. Copy the Public SSH Key to Kelvin2.
+**2. Copy the Public SSH Key to Kelvin2**
 
 If you are able to connect to Kelvin2 from inside the QUB network, but want to access from outside the network in future, then you are able to add the public key yourself. If you are outside the QUB network and therefore do not have access to Kelvin2,  [send your public key to us](https://www.ni-hpc.ac.uk/contact/), and an administrator will add it for you.
 
@@ -103,7 +104,8 @@ To add your public key from inside the QUB network:
   :wq
   ```
 
-#### 3. Connect to Kelvin2 using the SSH Key
+**3. Connect to Kelvin2 using the SSH Key**
+
 After this initial set-up process is complete, you can connect to Kelvin2 as follows:
 
 - Enter the following command into your terminal. **For QUB users, `<username>` will be your staff or student number. For UU/EPSRC users, `<username>` will typically be your first initial and surname.**
@@ -115,13 +117,14 @@ After this initial set-up process is complete, you can connect to Kelvin2 as fol
 
 !!! warning
 
-It will soon become mandatory to have MFA enabled on your Kelvin2 account. Failure to activate multi-factor authentication by 30th November 2023 may result in your account being disabled. To set up MFA, follow the instructions provided [in the following section](multi-factor-authentication-(mfa)-on-kelvin2).
+    It will soon become mandatory to have MFA enabled on your Kelvin2 account. Failure to activate multi-factor authentication by 30th November 2023 may result in your account being disabled. To set up MFA, follow the instructions provided [in the following section](multi-factor-authentication-(mfa)-on-kelvin2).
 
 ### Multi-Factor Authentication (MFA) on Kelvin2
 
 To enhance the security of your Kelvin2 account, you are now requested to enable Multi-Factor Authentication (MFA). This involves a one-time activation process and then entering the verification code provided by your authenticator application (e.g. Microsoft Authenticator) every time you connect.
 
 Users who have enabled MFA will start receiving verification prompts on their connections:
+
 - from outside the QUB network on **17th October 2023**
 - from inside the QUB network on **15th November 2023**
 
@@ -146,7 +149,7 @@ To enable Multi-Factor Authentication (MFA):
     If you lose access to your authenticator application and can no longer connect to Kelvin2, [contact us](https://www.ni-hpc.ac.uk/contact/) and an administrator will reset your MFA settings.
 
 
-### Potential warning when reconnecting to Kelvin2
+### Warnings when reconnecting to Kelvin2
 When connecting to Kelvin2 you will be directed to one of four login nodes. Depending on your local settings, you may receive a warning on your terminal when you are directed to a login node that you have not connected to before:
 ```
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -205,8 +208,8 @@ For Windows users, the recommended way to connect to Kelvin-2 is via a SSH clien
 
     ![MobaXTerm Advanced SSH screen](assets/MobaXTerm4.png)
 
->[!NOTE]
->If MFA is enabled, you will be prompted twice for verification when you connect to MobaXterm - once with a pop-up box and then in the terminal.
+!!! note
+    If MFA is enabled, you will be prompted twice for verification when you connect to MobaXterm - once with a pop-up box and then in the terminal.
 
 ### PuTTY
  
