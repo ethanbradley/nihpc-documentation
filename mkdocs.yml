@@ -2,6 +2,7 @@ site_name: NIHPC Documentation
 nav:
     - 'index.md'
     - 'Kelvin2 Overview.md'
+    - 'Connecting to Kelvin2.md'
     - 'Getting Started.md'
     - 'Modules & Jobscripts.md'
     - 'Job Submission.md'
