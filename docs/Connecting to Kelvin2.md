@@ -15,6 +15,7 @@ There are two ways to connect to Kelvin2 depending on whether you are inside or 
 
 ### Access from inside the QUB network
 If you are a QUB user **and** you are connecting from inside the QUB network (either from being on premises or using VPN/Remote Desktop):
+
 - Enter the following command into your terminal. **`<username>` is your QUB staff or student number**:
   ```bash
   ssh <username>@kelvin2.qub.ac.uk
