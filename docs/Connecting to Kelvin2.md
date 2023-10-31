@@ -25,7 +25,7 @@ If you are a QUB user **and** you are connecting from inside the QUB network (ei
 
 !!! warning
 
-    It will soon become mandatory to have MFA enabled on your Kelvin2 account. Failure to activate multi-factor authentication by 31st December 2023 may result in your account being disabled. To set up MFA, follow the instructions provided [further down this page](#multi-factor-authentication-(mfa)-on-kelvin2).
+    It will soon become mandatory to have MFA enabled on your Kelvin2 account. Failure to activate multi-factor authentication by 31st December 2023 may result in your account being disabled. To set up MFA, follow the instructions provided [further down this page](#multi-factor-authentication-mfa-on-kelvin2).
 
 ### Access from outside the QUB network
 
@@ -118,7 +118,7 @@ After this initial set-up process is complete, you can connect to Kelvin2 as fol
 
 !!! warning
 
-    It will soon become mandatory to have MFA enabled on your Kelvin2 account. Failure to activate multi-factor authentication by 30th November 2023 may result in your account being disabled. To set up MFA, follow the instructions provided [in the following section](#multi-factor-authentication-(mfa)-on-kelvin2).
+    It will soon become mandatory to have MFA enabled on your Kelvin2 account. Failure to activate multi-factor authentication by 30th November 2023 may result in your account being disabled. To set up MFA, follow the instructions provided [in the following section](#multi-factor-authentication-mfa-on-kelvin2).
 
 ### Multi-Factor Authentication (MFA) on Kelvin2
 
