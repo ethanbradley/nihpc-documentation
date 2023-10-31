@@ -62,10 +62,10 @@ Click the following steps to expand:
         ```
       In this example, the batch script simply specifies:
 
-      - the file in which the program output will be written
-      - a time limit after which the job will be automatically closed if it has not yet completed
-      - which Python module should be loaded to run the code
-      - a line which uses a bash command to execute our Python program
+          - the file in which the program output will be written
+          - a time limit after which the job will be automatically closed if it has not yet completed
+          - which Python module should be loaded to run the code
+          - a line which uses a bash command to execute our Python program
 
 ??? info "3. Submit the batch script"
 
@@ -79,7 +79,6 @@ Click the following steps to expand:
 ??? info "4. Check Status of Job"
 
     - Enter the following command into your Kelvin2 terminal to check the status of your submitted jobs.
-
       ```bash
       [<username>@login1 [kelvin2] ~]$squeue -u <username>
       ```
@@ -182,29 +181,29 @@ Files can be simply transferred to and from Kelvin2 using a 'drag and drop' inte
 
 Individual files can be transferred between your local computer and Kelvin2 by entering the following commands into your local terminal:
 
-??? note "Uploading a file"
+**Uploading a file**
 
-    From Inside the QUB Network
-    ```bash
-    scp path/to/local/file.txt <username>@kelvin2.qub.ac.uk:/path/on/kelvin2
-    ```
+From Inside the QUB Network:
+```bash
+scp path/to/local/file.txt <username>@kelvin2.qub.ac.uk:/path/on/kelvin2
+```
 
-    From Outside the QUB Network
-    ```bash
-    scp –P 55890 -i /path/to/ssh/private/key path/to/local/file.txt <username>@login.kelvin.alces.network:/path/on/kelvin2
-    ```
+From Outside the QUB Network:
+```bash
+scp –P 55890 -i /path/to/ssh/private/key path/to/local/file.txt <username>@login.kelvin.alces.network:/path/on/kelvin2
+```
 
-??? note "Downloading a file"
+**Downloading a file**
 
-    From Inside the QUB Network
-    ```bash
-    scp <username>@kelvin2.qub.ac.uk:/path/to/kelvin2/file.txt path/to/local/directory/
-    ```
+From Inside the QUB Network:
+```bash
+scp <username>@kelvin2.qub.ac.uk:/path/to/kelvin2/file.txt path/to/local/directory/
+```
 
-    From Outside the QUB Network
-    ```bash
-    scp –P 55890 -i /path/to/ssh/private/key <username>@login.kelvin.alces.network:/path/to/kelvin2/file.txt path/to/local/directory/
-    ```
+From Outside the QUB Network:
+```bash
+scp –P 55890 -i /path/to/ssh/private/key <username>@login.kelvin.alces.network:/path/to/kelvin2/file.txt path/to/local/directory/
+```
 
 
 Directories and their contents can also be transferred by specifing a directory instead of a file and using `scp` with a `-r` flag (for recursive).
