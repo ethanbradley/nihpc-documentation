@@ -25,7 +25,7 @@ If you are a QUB user **and** you are connecting from inside the QUB network (ei
 
 !!! warning
 
-    It will soon become mandatory to have MFA enabled on your Kelvin2 account. Failure to activate multi-factor authentication by 31st January 2023 may result in your account being temporarily disabled. To set up MFA, follow the instructions provided [further down this page](#multi-factor-authentication-mfa-on-kelvin2).
+    It will soon become mandatory to have MFA enabled on your Kelvin2 account. Failure to activate multi-factor authentication by 31st January 2024 may result in your account being temporarily disabled. To set up MFA, follow the instructions provided [further down this page](#multi-factor-authentication-mfa-on-kelvin2).
 
 ### Access from outside the QUB network
 
@@ -132,7 +132,7 @@ Users who have enabled MFA will start receiving verification prompts on their co
 
 !!! warning
 
-    Users are required to enabled MFA on their accounts no later than **30th November 2023** (for connections outside the QUB network) and no later than **31st January 2023** (for connections inside the QUB network). For security reasons, users who have not enabled MFA by these deadlines will have their accounts temporarily disabled.
+    Users are required to enabled MFA on their accounts no later than **30th November 2023** (for connections outside the QUB network) and no later than **31st January 2024** (for connections inside the QUB network). For security reasons, users who have not enabled MFA by these deadlines will have their accounts temporarily disabled.
 
 #### Enabling Multi-Factor Authentication
 
@@ -142,7 +142,7 @@ To enable Multi-Factor Authentication (MFA):
     ```bash
     /opt/flight/bin/flight mfa generate
     ```
-  - Using your authenticator application, scan the QR code or enter the key
+  - Using the authenticator application on your mobile device, scan the QR code or enter the key
   - Your authenticator should now be generating one-time passwords to access Kelvin2
 
 !!! info
