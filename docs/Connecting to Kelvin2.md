@@ -25,7 +25,7 @@ If you are a QUB user **and** you are connecting from inside the QUB network (ei
 
 !!! warning
 
-    It will soon become mandatory to have MFA enabled on your Kelvin2 account. Failure to activate multi-factor authentication by 31st December 2023 may result in your account being disabled. To set up MFA, follow the instructions provided [further down this page](#multi-factor-authentication-mfa-on-kelvin2).
+    It will soon become mandatory to have MFA enabled on your Kelvin2 account. Failure to activate multi-factor authentication by 31st January 2023 may result in your account being temporarily disabled. To set up MFA, follow the instructions provided [further down this page](#multi-factor-authentication-mfa-on-kelvin2).
 
 ### Access from outside the QUB network
 
@@ -118,21 +118,21 @@ After this initial set-up process is complete, you can connect to Kelvin2 as fol
 
 !!! warning
 
-    It will soon become mandatory to have MFA enabled on your Kelvin2 account. Failure to activate multi-factor authentication by 30th November 2023 may result in your account being disabled. To set up MFA, follow the instructions provided [in the following section](#multi-factor-authentication-mfa-on-kelvin2).
+    It will soon become mandatory to have MFA enabled on your Kelvin2 account. Failure to activate multi-factor authentication by 30th November 2023 may result in your account being temporarily disabled. To set up MFA, follow the instructions provided [in the following section](#multi-factor-authentication-mfa-on-kelvin2).
 
 ### Multi-Factor Authentication (MFA) on Kelvin2
 
-To enhance the security of your Kelvin2 account, you are now requested to enable Multi-Factor Authentication (MFA). This involves a one-time activation process and then entering the verification code provided by your authenticator application (e.g. Microsoft Authenticator) every time you connect.
+To enhance the security of your Kelvin2 account, you are now requested to enable Multi-Factor Authentication (MFA). This involves a one-time activation process and then entering the verification code provided by your authenticator application on your mobile device (e.g. Microsoft Authenticator) every time you connect.
 
 Users who have enabled MFA will start receiving verification prompts on their connections:
 
-- from outside the QUB network on **17th October 2023**
-- from inside the QUB network on **15th November 2023**
+- from outside the QUB network (i.e. connections via SSH key) on **17th October 2023**
+- from inside the QUB network (i.e. connections via QUB Active Directory credentials) on **15th November 2023**
 
 
 !!! warning
 
-    Users are required to enabled MFA on their accounts no later than **30th November 2023** (for connections outside the QUB network) and no later than **31st December 2023** (for connections inside the QUB network). Users who have not enabled MFA by these deadlines will have their accounts disabled.
+    Users are required to enabled MFA on their accounts no later than **30th November 2023** (for connections outside the QUB network) and no later than **31st January 2023** (for connections inside the QUB network). For security reasons, users who have not enabled MFA by these deadlines will have their accounts temporarily disabled.
 
 #### Enabling Multi-Factor Authentication
 
