@@ -5,7 +5,7 @@ nav:
     - 'Connecting to Kelvin2.md'
     - 'Quickstart Guide.md'
     - 'Running Jobs.md'
-    - 'Applications.md'
+    - 'Application Guides.md'
     - 'Compilers.md'
 theme:
   name: material
