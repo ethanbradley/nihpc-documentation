@@ -319,7 +319,7 @@ matlab/R2022a
 
     Then, inside MATLAB, notice that calling the function `feature` (line #1 below) must show that exactly 10 CPU cores are available, corresponding to the number of cores allocated above with the `srun` command. Next, the codes launches the parallel pool (`parpool`) for the "local" cluster requesting the same amount of workers as the cores allocated in this example.
 
-    ``` matlab linenums="1"
+    ``` matlab
     feature('numcores')
     p = parpool('local', 10) % 10 cores requested in this example
     ```
@@ -395,7 +395,7 @@ matlab/R2022a
     ![Image title](assets/TurboVNC_Matlab.jpg){ width="800" }
 
 
-??? note "MATLAB script used in following GPU examples"
+??? example "MATLAB script used in following GPU examples"
 
     The following code `matlab_gpu_example.m` is to be used in the following GPU examples
 
