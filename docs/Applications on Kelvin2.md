@@ -165,7 +165,7 @@ apps/anaconda3/5.2.0/bin
     conda create -n R412env -c conda-forge r-base=4.1.2
     ```
 
-    Here, the preferred version (4.1.2) is specified in line 5 with the argument "r-base=4.1.2". For other versions, check the Anaconda R's online documentation, for example [here](https://anaconda.org/conda-forge/r-base){target=_blank} or [here] (https://docs.anaconda.com/free/anaconda/packages/using-r-language/){target=_blank} for more information.
+    Here, the preferred version (4.1.2) is specified in line 5 with the argument "r-base=4.1.2". For other versions, check the Anaconda R's online documentation, for example [here](https://anaconda.org/conda-forge/r-base){target=_blank} or [here](https://docs.anaconda.com/free/anaconda/packages/using-r-language/){target=_blank} for more information.
 
     **Installation Example: HOMER**
 
@@ -219,9 +219,9 @@ apps/anaconda3/5.2.0/bin
 
     For the last part, open a local terminal in the user's PC/laptop, and enter the following instructions:
 
-    ` bash
+    ```bash
     ssh -p 55890 -i /path/to/kelvin/key <user_name>@login.kelvin.alces.network -NL 8888:10.10.15.3:8888
-    `
+    ```
 
     This establishes the tunnel using `ssh` command, where it has been assumed that the IP and port number annotated above are "10.10.15.3" and "8888", respectively.
 
@@ -596,6 +596,10 @@ apps/python3/3.8.5/gcc-4.8.5
     ```
     This creates and uses the folder "gridware" in users' Scratch directory, so the pip install will be redirected to the Scratch directory instead of the Home directory.
 
+??? note "Default Python version on Kelvin2"
+
+    On internet blogs/forums, users will often find the recommendation `pip install <package name>` to install a particular tool. In this case, for the same install in Kelvin2, it is recommended to precede the command with "python3 -m" because by default pip will refer to the Python 2.7 version, which is always available from command line in Kelvin2. That is, always use `python3 -m pip install <package name>` to install the package.
+    
 ### Usage examples
 
 ??? example "Installing reportseff in Home directory"
@@ -607,9 +611,8 @@ apps/python3/3.8.5/gcc-4.8.5
     python3 -m pip install reportseff
     reportseff -u $USER
     ```
-    Note: On internet blogs/forums, users will often find the recommendation `pip install <package name>` to install a particular tool. In this case, for the same install in Kelvin2, it is recommended to precede the command with "python3 -m" because by default pip will refer to the Python 2.7 version, which is always available from command line in Kelvin2. That is, always use `python3 -m pip install <package name>` to install the package.
 
-    In the previous example, reportseff is a very usefull tool to monitor the efficient utilization of cluster resources (time, RAM, CPU/GPU) that may be critical for your work. It should be used in addition to `sacct` command, because it helps to optimize your jobs which may translates on significantly lower queue times. For instance, the reportseff's outcome below shows some job statistics (greed/red colour codes highlight good/poor resources utilization) for selected jobs.
+    Reportseff is a very usefull tool to monitor the efficient utilization of cluster resources (time, RAM, CPU/GPU) that may be critical for your work. It should be used in addition to `sacct` command, because it helps to optimize your jobs which may translates on significantly lower queue times. For instance, the reportseff's outcome below shows some job statistics (greed/red colour codes highlight good/poor resources utilization) for selected jobs.
 
     ![Image title](assets/reportseff.png){ width="500" }
 
@@ -689,7 +692,7 @@ R/4.1.2/gcc-9.3.0+lapack-3.9.0+blas-3.8.0
     When required libraries are not available in Kelvin2 module system, the users must contact the RSE Kelvin2 team. Otherwise, they can proceed to create an Anaconda environment, where installation of the R's preferred version, libraries and packages can be performed.
 
 
-## Singularity
+## **Singularity**
 
 In Kelvin-2, we use Singularity to run containers. The main advantage of Singularity is that it does not require root privileges to install the containers. Because of that, it is the most commonly used container in HPC systems.
 
