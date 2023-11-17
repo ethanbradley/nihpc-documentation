@@ -1,7 +1,9 @@
 # Kelvin2 Hardware
 
 ## Kelvin2 CPU Nodes
+
 **AMD Nodes**
+
 - **Nodes:** node[101-209]
 - **Server:** Dell PowerEdge R6525
 - **CPU:** 2x AMD EPYC 7702 64-Core Processor
@@ -19,6 +21,7 @@
     - node166, node[183-195]: (reserved for specific research groups)
 
 **AMD X Series Nodes**
+
 - **Nodes:** node[301-302]
 - **Server:** Dell PowerEdge R6525
 - **CPU:** 2x AMD EPYC 7773X 64-Core Processor
@@ -30,6 +33,7 @@
 ## Kelvin2 GPU Nodes
 
 **V100 nodes**
+
 - **Nodes:** gpu[103-110]
 - **Server:** Dell EMC DSS 8440
 - **CPU:** 2x Intel Xeon Platinum 8168 CPU @ 2.70GHz
@@ -40,6 +44,7 @@
 - **SLURM partitions:** k2-gpu, k2-gpu-interactive, k2-epsrc
 
 **A100 nodes**
+
 - **Nodes:** gpu[111-113]
 - **Server:** Dell PowerEdge XE8545
 - **CPU:** 2x AMD EPYC 7763 64-Core Processor
@@ -50,6 +55,7 @@
 - **SLURM partitions:** k2-gpu, k2-gpu-interactive, k2-epsrc
 
 **A100 slice node**
+
 - **Nodes:** gpu[114]
 - **Server:** Dell PowerEdge XE8545
 - **CPU:** 2x AMD EPYC 7763 64-Core Processor
@@ -79,6 +85,7 @@
 ## Legacy Kelvin CPU Nodes
 
 **Type 1**
+
 - **Nodes:** node[001-024] node[026-034], node[036-039], node[041], node[045-051], node[053-061]
 - **Server:** ProLiant XL170r Gen9
 - **CPU:** Intel Xeon CPU E5-2660 v3 @ 2.60GHz
@@ -106,6 +113,7 @@
 ## Legacy Kelvin GPU Nodes
 
 **K4200 node**
+
 - **Nodes:** gpu01
 - **Server:** ProLiant DL380 Gen9
 - **CPU:** 2x Intel Xeon CPU E5-2640 v3 @ 2.60GHz
@@ -116,6 +124,7 @@
 - **SLURM partitions:** gpu
 
 **V100 node**
+
 - **Nodes:** gpu02
 - **Server:** ProLiant XL270d Gen10
 - **CPU:** 2x Intel Xeon Gold 6126 CPU @ 2.60GHz
@@ -128,6 +137,7 @@
 ## Legacy Kelvin High Memory Nodes
 
 **Type 1**
+
 - **Nodes:** smp01
 - **Server:** ProLiant DL560 Gen9
 - **CPU:** 4x Intel Xeon CPU E5-4627 v3 @ 2.60GHz
@@ -137,6 +147,7 @@
 - **SLURM partitions:** himem
 
 **Type 2**
+
 - **Nodes:** smp[03-04]
 - **Server:** ProLiant DL360 Gen10
 - **CPU:** 2x Intel Xeon Gold 6126 CPU @ 2.60GHz
@@ -146,6 +157,7 @@
 - **SLURM partitions:** himem
 
 **Type 3**
+
 - **Nodes:** smp05
 - **Server:** ProLiant DL360 Gen10
 - **CPU:** 2x Intel Xeon Gold 6130 CPU @ 2.10GHz
