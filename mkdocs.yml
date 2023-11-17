@@ -7,6 +7,7 @@ nav:
     - 'Running Jobs.md'
     - 'Application Guides.md'
     - 'Compilers.md'
+    - 'Kelvin2 Hardware.md'
 theme:
   name: material
   features:
