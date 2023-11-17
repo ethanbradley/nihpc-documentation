@@ -1,6 +1,6 @@
 # Kelvin2 Hardware
 
-## Kelvin2 CPU Nodes
+## CPU Nodes
 
 **AMD Nodes**
 
@@ -30,7 +30,7 @@
 - **NUMA domains:** 8
 - **SLURM partitions:** k2-amd-xseries
 
-## Kelvin2 GPU Nodes
+## GPU Nodes
 
 **V100 nodes**
 
@@ -66,7 +66,7 @@
 - **SLURM partitions:** k2-gpu, k2-gpu-interactive, k2-epsrc
 
 
-## Kelvin2 High Memory Nodes
+## High Memory Nodes
 
 - **Nodes:** smp[106-113]
 - **Server:** Dell PowerEdge R6525
@@ -80,7 +80,7 @@
     - smp[110-113]: 2
 - **SLURM partitions:** k2-himem, k2-epsrc-himem
 
-## Legacy Kelvin CPU Nodes
+## Legacy CPU Nodes
 
 **Type 1**
 
@@ -108,7 +108,7 @@
 - **NUMA domains:** 2
 - **SLURM partitions:** hipri, medpri, lowpri, avx512
 
-## Legacy Kelvin GPU Nodes
+## Legacy GPU Nodes
 
 **K4200 node**
 
@@ -132,7 +132,7 @@
 - **GPU:** 4x Tesla V100 SXM2 32GB
 - **SLURM partitions:** gpu
 
-## Legacy Kelvin High Memory Nodes
+## Legacy High Memory Nodes
 
 **Type 1**
 
