@@ -68,8 +68,6 @@
 
 ## Kelvin2 High Memory Nodes
 
-### Node Summary
-
 - **Nodes:** smp[106-113]
 - **Server:** Dell PowerEdge R6525
 - **CPU:** 2x AMD EPYC 7702 64-Core Processor
@@ -86,7 +84,7 @@
 
 **Type 1**
 
-- **Nodes:** node[001-024] node[026-034], node[036-039], node[041], node[045-051], node[053-061]
+- **Nodes:** node[001-024], node[026-034], node[036-039], node[041], node[045-051], node[053-061]
 - **Server:** ProLiant XL170r Gen9
 - **CPU:** Intel Xeon CPU E5-2660 v3 @ 2.60GHz
 - **Sockets:Cores:Threads:** 2:10:1
