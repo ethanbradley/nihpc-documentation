@@ -45,7 +45,7 @@ The procedure for generating an SSH key pair on your terminal varies depending o
 
     Create the SSH key pair on your machine by entering the following command into your terminal:
     ```bash
-    ssh-keygen -t rsa –f ~/.ssh/my-kelvin-key
+    ssh-keygen -t rsa -f ~/.ssh/my-kelvin-key
     ```
     **All users MUST set a passphrase when prompted.**
 
@@ -111,7 +111,7 @@ After this initial set-up process is complete, you can connect to Kelvin2 as fol
 
 - Enter the following command into your terminal. **For QUB users, `<username>` will be your staff or student number. For UU/EPSRC users, `<username>` will typically be your first initial and surname.**
   ```bash
-  ssh –p 55890 –i /path/to/ssh/private/key <username>@login.kelvin.alces.network
+  ssh -p 55890 -i /path/to/ssh/private/key <username>@login.kelvin.alces.network
   ```
 - Enter your passphrase when requested. **This is the passphrase that you set up when creating the SSH key pair.**
 - If you have enabled multi-factor authentication (MFA), enter the verification code provided by your authenticator app when requested.
