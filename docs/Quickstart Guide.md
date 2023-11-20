@@ -190,7 +190,7 @@ scp path/to/local/file.txt <username>@kelvin2.qub.ac.uk:/path/on/kelvin2
 
 From Outside the QUB Network:
 ```bash
-scp –P 55890 -i /path/to/ssh/private/key path/to/local/file.txt <username>@login.kelvin.alces.network:/path/on/kelvin2
+scp -P 55890 -i /path/to/ssh/private/key path/to/local/file.txt <username>@login.kelvin.alces.network:/path/on/kelvin2
 ```
 
 **Downloading a file**
@@ -202,7 +202,7 @@ scp <username>@kelvin2.qub.ac.uk:/path/to/kelvin2/file.txt path/to/local/directo
 
 From Outside the QUB Network:
 ```bash
-scp –P 55890 -i /path/to/ssh/private/key <username>@login.kelvin.alces.network:/path/to/kelvin2/file.txt path/to/local/directory/
+scp -P 55890 -i /path/to/ssh/private/key <username>@login.kelvin.alces.network:/path/to/kelvin2/file.txt path/to/local/directory/
 ```
 
 
