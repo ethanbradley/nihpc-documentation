@@ -120,7 +120,7 @@ Below is a full example jobscript:
 
         #SBATCH --mail-user=email@work.com
 
-        #SBATCH --mail_type=ALL
+        #SBATCH --mail-type=ALL
 
         #SBATCH --ntasks=1
 
