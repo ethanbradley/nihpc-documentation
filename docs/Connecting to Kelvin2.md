@@ -25,7 +25,7 @@ If you are a QUB user **and** you are connecting from inside the QUB network (ei
 
 !!! warning
 
-    It will soon become mandatory to have MFA enabled on your Kelvin2 account. Failure to activate multi-factor authentication may result in your account being temporarily disabled. To set up MFA, follow the instructions provided [further down this page](#multi-factor-authentication-mfa-on-kelvin2).
+    It will soon become mandatory to have MFA enabled on your Kelvin2 account. To set up MFA, follow the instructions provided [further down this page](#multi-factor-authentication-mfa-on-kelvin2).
 
 ### Access from outside the QUB network
 
@@ -114,26 +114,21 @@ After this initial set-up process is complete, you can connect to Kelvin2 as fol
   ssh -p 55890 -i /path/to/ssh/private/key <username>@login.kelvin.alces.network
   ```
 - Enter your passphrase when requested. **This is the passphrase that you set up when creating the SSH key pair.**
-- If you have enabled multi-factor authentication (MFA), enter the verification code provided by your authenticator app when requested.
+- Enter the verification code provided by your authenticator app when requested. If you have not yet set up MFA, follow the instructions provided [in the following section](#multi-factor-authentication-mfa-on-kelvin2)
 
-!!! warning
-
-    It will soon become mandatory to have MFA enabled on your Kelvin2 account. Failure to activate multi-factor authentication by 19th January 2024 may result in your account being temporarily disabled. To set up MFA, follow the instructions provided [in the following section](#multi-factor-authentication-mfa-on-kelvin2).
 
 ### Multi-Factor Authentication (MFA) on Kelvin2
 
 To enhance the security of your Kelvin2 account, you are now requested to enable Multi-Factor Authentication (MFA). This involves a one-time activation process and then entering the verification code provided by your authenticator application on your mobile device (e.g. Microsoft Authenticator) every time you connect.
 
-Multi-Factor Authentication prompts are currently enabled for connections via port 55890 (i.e. connections from outside the QUB network, via ssh key) and will soon be enabled for connections via port 22 (i.e. connections from inside the QUB network, via QUB Active Directory credentials)
+Multi-Factor Authentication prompts are currently mandatory for connections via port 55890 (i.e. connections from outside the QUB network, via ssh key) and will soon be enabled for connections via port 22 (i.e. connections from inside the QUB network, via QUB Active Directory credentials)
 
-
-!!! warning
-
-    Users are required to enabled MFA on their accounts no later than **19th January 2024** for connections outside the QUB network. For security reasons, users who have not enabled MFA by these deadlines may have their accounts temporarily disabled.
 
 #### Enabling Multi-Factor Authentication
 
-To enable Multi-Factor Authentication (MFA):
+QUB Staff/Students are currently able to self-activate Multi-Factor Authentication (MFA) while on the QUB network. Otherwise, please [contact us](https://www.ni-hpc.ac.uk/contact/){target=_blank} and an administrator will arrange a Teams call with you to activate MFA on your behalf.
+
+To self-activate Multi-Factor Authentication (MFA):
 
   - Log into Kelvin2 and type the following command into your terminal to generate a QR Code and key
     ```bash
