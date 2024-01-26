@@ -58,7 +58,7 @@ The procedure for generating an SSH key pair on your terminal varies depending o
 
     **The private key should be kept safe and should not be shared with anybody.**
 
-    Please see our [video on how to set up remote access via Mac.](https://www.youtube.com/watch?v=DDSMemeVMv4&t=4s)
+Please see our [video on how to set up remote access via Mac.](https://www.youtube.com/watch?v=DDSMemeVMv4&t=4s)
 
 ??? note "Windows 10 (Autumn 2018) or later"
 
