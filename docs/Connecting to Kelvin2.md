@@ -196,6 +196,7 @@ For Windows users, the recommended way to connect to Kelvin-2 is via a SSH clien
 1. Click on "Advanced SSH settings" screen and fill the following fields:
 
     - Tick "X11-Forwarding". This will allow to open graphical applications.
+    - For the "SSH-browser type", select "SCP (Enhanced Speed)"
     - Only if you are connecting from ouside the QUB campus, tick "Use private key". Then click on the document icon on the right of the box, and select your private key file `my-kelvin-key`.
     - Click the "OK" box on the bottom of the Window.
 
@@ -204,7 +205,7 @@ For Windows users, the recommended way to connect to Kelvin-2 is via a SSH clien
     ![MobaXTerm Advanced SSH screen](assets/MobaXTerm4.png)
 
 !!! note
-    If MFA is enabled, you will be prompted twice for verification when you connect to MobaXterm - once with a pop-up box and then in the terminal.
+    If MFA is enabled and "SSH-browser type" is set to SFTP you will be receive a verification prompt at every file transfer. For this reason, we recommend setting your "SSH-browser" type to SCP (Enhanced Speed)
 
 ### PuTTY
  
