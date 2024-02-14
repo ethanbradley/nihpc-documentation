@@ -123,6 +123,8 @@ After this initial set-up process is complete, you can connect to Kelvin2 as fol
 
 To enhance the security of your Kelvin2 account, you are now requested to enable Multi-Factor Authentication (MFA). This involves a one-time activation process and then entering the verification code provided by your authenticator application on your mobile device (e.g. Microsoft Authenticator) every time you connect.
 
+For a step by step guide on how to set up MFA, Please see our [set up video.](https://www.youtube.com/watch?v=s_ikzufVRgw)
+
 #### Enabling Multi-Factor Authentication
 
 To enable Multi-Factor Authentication (MFA):
