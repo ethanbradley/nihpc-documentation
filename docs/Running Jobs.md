@@ -71,7 +71,7 @@ The main Kelvin2 partitions along with their time limits and computational resou
 Other partitions are also available, including some for specific research groups. A comprehensive list of Kelvin2 nodes, their associated partitions and their computational resources can be found using the [sinfo command](https://slurm.schedmd.com/sinfo.html){target=_blank}.
 
 
-**Resource Directives: e.g. `--ntasks`, `--nnodes`, `--cpus-per-task`, `--mem-per-cpu`**
+**Resource Directives: e.g. `--ntasks`, `--nodes`, `--cpus-per-task`, `--mem-per-cpu`**
 
 `#SBATCH` directives for computational resources follow the format
 
@@ -87,7 +87,7 @@ If your MPI application requires 40 CPU cores spread across a maximum of 2 nodes
 ```bash
 #SBATCH --ntasks=40
 #SBATCH --mem-per-cpu=2G
-#SBATCH --nnodes=2
+#SBATCH --nodes=2
 ```
 
 *OpenMP Application example*
@@ -98,12 +98,12 @@ If your MPI application requires 40 CPU cores spread across a maximum of 2 nodes
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=40
 #SBATCH --mem-per-cpu=2G
-#SBATCH --nnodes=1
+#SBATCH --nodes=1
 ```
 
 **GPU Directives: `--gres`**
 
-Jobs submitted to the k2-gpu, k2-gpu-interactive (for [interactive jobs](#interactive-jobs) only) and k2-epsrc-gpu partitions can access GPUs using the `--gres` flag by following the below template (`<N>` is the number of GPUs requested)
+Jobs submitted to the k2-gpu, k2-gpu-interactive (for [interactive jobs](#interactive-jobs) only) and k2-epsrc-gpu partitions can access GPUs using the `--gres` flag by following the below template (`<N>` is the number of GPUs requested per node)
 
 ```bash
 #SBATCH --gres=gpu:<gpu-type>:<N>
@@ -163,7 +163,7 @@ For illustration, example jobscripts for CPU and GPU applications are shown belo
     #SBATCH --mail-user=<email address>         # Specify email address for notifications
     #SBATCH --mail-type=ALL                     # Specify types of notification (eg job Begin, End)
     #SBATCH --ntasks=32                         # Number of tasks to run (for MPI tasks this is number of cores) 
-    #SBATCH --nnodes=4                          # Maximum number of nodes on which to launch tasks 
+    #SBATCH --nodes=4                          # Maximum number of nodes on which to launch tasks 
 
     #SBATCH --partition=k2-hipri                # Specify SLURM partition to queue the job
 
@@ -183,7 +183,7 @@ For illustration, example jobscripts for CPU and GPU applications are shown belo
     #SBATCH --job-name=matlab-job-name
     #SBATCH --output=matlab-output.out
     #SBATCH --time=00:30:00
-    #SBATCH --nnodes=1
+    #SBATCH --nodes=1
     #SBATCH --ntasks=4
     #SBATCH --mem-per-cpu=5G
     #SBATCH --partition=k2-gpu
